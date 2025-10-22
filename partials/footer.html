@@ -1,80 +1,73 @@
-<!-- partials/footer.html -->
 <footer class="site-footer" role="contentinfo">
-  <div class="footer__glass"></div>
-
-  <div class="footer__grid wrap">
-    <div class="f-brand">
-      <a href="#/home" class="brand brand--footer" aria-label="HealthFlo Healthcare — Home">
-        <span class="brand__mark" aria-hidden="true">
-          <span class="brand__pulse"></span>
-          <span class="brand__glow"></span>
-        </span>
-        <span class="brand__text">
-          <strong>HealthFlo</strong> <span class="thin">Healthcare</span>
-        </span>
+  <div class="container footer__grid" data-animate>
+    <section class="footer__brand">
+      <a href="#/home" class="brand brand--sm" aria-label="HealthFlo Healthcare — Home">
+        <span class="brand__glow" aria-hidden="true"></span>
+        <img src="assets/logo.svg" alt="" class="brand__mark" />
+        <span class="brand__name">HealthFlo</span>
       </a>
-      <p class="muted">Marketplace &amp; operations backbone for patients, hospitals and insurers — built for India.</p>
-      <div class="social">
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">fb</a>
+      <p class="footer__tag">
+        Transparent care journeys for patients. Cashflow clarity for hospitals. Scalable networks for insurers.
+      </p>
+      <div class="footer__social" aria-label="Social">
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
       </div>
-    </div>
+    </section>
 
-    <div class="f-col">
-      <h4>Patients</h4>
-      <a href="#/patient">Compare &amp; buy policies</a>
-      <a href="#/patient">Treatment packages</a>
-      <a href="#/patient">Know coverage</a>
-      <a href="#/patient">Denial &amp; Ombudsman</a>
-      <a href="#/patient">Book specialists</a>
-      <a href="#/patient">Medicines &amp; Lab</a>
-    </div>
+    <section class="footer__col">
+      <h3>Patients</h3>
+      <ul>
+        <li><a href="#/patient">Start</a></li>
+        <li><a href="#/patient#policy">Know Your Coverage</a></li>
+        <li><a href="#/patient#labs">Lab at Home</a></li>
+        <li><a href="#/patient#pharmacy">Medicines</a></li>
+      </ul>
+    </section>
 
-    <div class="f-col">
-      <h4>Hospitals</h4>
-      <a href="#/hospital">Empanelment</a>
-      <a href="#/hospital">Cashless Everywhere</a>
-      <a href="#/hospital">Denial &amp; Recovery</a>
-      <a href="#/hospital">NABH / ROHINI</a>
-      <a href="#/hospital">RCM Dashboard</a>
-    </div>
+    <section class="footer__col">
+      <h3>Hospitals</h3>
+      <ul>
+        <li><a href="#/hospital">RCM Cockpit</a></li>
+        <li><a href="#/hospital#empanelment">Empanelment</a></li>
+        <li><a href="#/hospital#cashless">Cashless Everywhere</a></li>
+        <li><a href="#/hospital#denials">Denial &amp; Recovery</a></li>
+      </ul>
+    </section>
 
-    <div class="f-col">
-      <h4>Insurers</h4>
-      <a href="#/insurer">Policy distribution</a>
-      <a href="#/insurer">Network ops</a>
-      <a href="#/insurer">Packages &amp; pricing</a>
-      <a href="#/insurer">Hospital relations</a>
-    </div>
+    <section class="footer__col">
+      <h3>Insurers</h3>
+      <ul>
+        <li><a href="#/insurer">Insurer Console</a></li>
+        <li><a href="#/insurer#distribution">Distribution</a></li>
+        <li><a href="#/insurer#network">Network Ops</a></li>
+        <li><a href="#/insurer#packages">Packages &amp; Pricing</a></li>
+      </ul>
+    </section>
 
-    <div class="f-col">
-      <h4>Contact</h4>
-      <a href="tel:+919940207670">+91 99402 07670</a>
-      <a href="tel:+918610425342">+91 86104 25342</a>
-      <a href="mailto:info@healthflo.in">info@healthflo.in</a>
-      <div class="badge">Chennai · Bengaluru · Hyderabad</div>
-      <form class="mini-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Thanks!';">
-        <label for="nl" class="muted">Get product updates</label>
-        <div class="mini-form__row">
-          <input id="nl" type="email" placeholder="you@company.com" required />
-          <button class="btn btn-primary" type="submit">Subscribe</button>
-        </div>
-      </form>
-    </div>
+    <section class="footer__col">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="tel:+919940207670">+91 99402 07670</a></li>
+        <li><a href="tel:+918610425342">+91 86104 25342</a></li>
+        <li><a href="mailto:info@healthflo.in">info@healthflo.in</a></li>
+        <li><a href="https://www.healthflo.org" target="_blank" rel="noopener">healthflo.org</a></li>
+      </ul>
+    </section>
   </div>
 
-  <div class="footer__bottom wrap">
-    <small>© <span id="y"></span> HealthFlo Ventures Pvt. Ltd. All rights reserved.</small>
-    <nav class="legal">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#/home">Sitemap</a>
+  <div class="footer__bar">
+    <small>© <span id="year"></span> HealthFlo Ventures Pvt. Ltd. All rights reserved.</small>
+    <nav class="footer__links" aria-label="Legal">
+      <a href="#/home#privacy">Privacy</a>
+      <a href="#/home#terms">Terms</a>
+      <a href="#/home#faqs">FAQs</a>
     </nav>
   </div>
 
   <script>
-    // year
-    (function(){var y=document.getElementById('y'); if(y) y.textContent=new Date().getFullYear();})();
+    // tiny util for dynamic year without touching app.js
+    (function(){ try{ document.getElementById('year').textContent = new Date().getFullYear(); }catch(e){} })();
   </script>
 </footer>
