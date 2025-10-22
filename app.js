@@ -1,21 +1,24 @@
 /* =========================================================
    HealthFlo App — SPA Router + Interactions (GH Pages safe)
-   Resolves includes/views against document.baseURI (subpath-aware)
+   • Subpath-aware URL resolve
+   • Cache-bust on fetch
+   • Inline fallback for Home view
    ========================================================= */
 
 function ready(fn){document.readyState!=='loading'?fn():document.addEventListener('DOMContentLoaded',fn);}
 const sleep = (ms)=>new Promise(r=>setTimeout(r,ms));
 const prefersReduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cacheBust = () => `?v=${Date.now()}`;
 
-/* ---------- Safe URL resolver (handles /HF-TEST/ subpath) ---------- */
+/* Resolve a relative path against current site base (handles /HF-TEST/) */
 const resolveURL = (p) => new URL(p, document.baseURI).href;
 
-/* ---------- Include loader (header/footer) ---------- */
+/* ---------- Includes (header/footer) ---------- */
 async function loadIncludes() {
   const nodes = document.querySelectorAll('[data-include]');
   await Promise.all([...nodes].map(async (n) => {
-    const rel = n.getAttribute('data-include');            // e.g. "partials/header.html"
-    const url = resolveURL(rel);
+    const rel = n.getAttribute('data-include');  // e.g. "partials/header.html"
+    const url = resolveURL(rel) + cacheBust();
     try {
       const res = await fetch(url, { cache: 'no-store' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -29,14 +32,40 @@ async function loadIncludes() {
   }));
 }
 
-/* ---------- Routes (RELATIVE keys & resolved URLs) ---------- */
+/* ---------- Routes (relative paths) ---------- */
 const routes = {
   '/home':     'views/landing.html',
   '/patient':  'views/patient.html',
   '/hospital': 'views/hospital.html',
   '/insurer':  'views/insurer.html'
 };
-const routeURL = (path) => resolveURL(routes[path] || routes['/home']);
+const routeURL = (path) => resolveURL(routes[path] || routes['/home']) + cacheBust();
+
+/* ---------- Minimal inline HOME fallback (renders if landing.html 404s) ---------- */
+const inlineHome = `
+<section class="section panel" data-animate>
+  <header class="section-head center">
+    <h1>HealthFlo Healthcare</h1>
+    <p class="kicker">Connected care for Patients, Hospitals, and Insurers.</p>
+  </header>
+  <div class="aud-grid" style="margin-top:1rem">
+    <a class="aud-card aud-card--blink" href="#/patient">
+      <div class="aud-ico">🧑‍⚕️</div>
+      <h3>Patient</h3>
+      <p>Compare & buy policies, explore treatment packages, book specialists.</p>
+    </a>
+    <a class="aud-card aud-card--blink" href="#/hospital">
+      <div class="aud-ico">🏥</div>
+      <h3>Hospital</h3>
+      <p>RCM, empanelment, cashless everywhere, denial recovery.</p>
+    </a>
+    <a class="aud-card aud-card--blink" href="#/insurer">
+      <div class="aud-ico">📄</div>
+      <h3>Insurer</h3>
+      <p>Policy distribution, network ops, packages & pricing.</p>
+    </a>
+  </div>
+</section>`;
 
 /* ---------- Router ---------- */
 async function render(path) {
@@ -48,38 +77,29 @@ async function render(path) {
   let html = '';
   try {
     let res = await fetch(url, { cache: 'no-store' });
-    if (!res.ok) {
-      // gentle fallback: try case-variant "Landing.html" once (helps if OS created wrong case)
-      if (path === '/home' && routes['/home'].toLowerCase().includes('landing.html')) {
-        const alt = resolveURL('views/Landing.html');
-        res = await fetch(alt, { cache: 'no-store' });
-        if (res.ok) {
-          html = await res.text();
-        } else {
-          throw new Error(`HTTP ${res.status} for ${url}`);
-        }
-      } else {
-        throw new Error(`HTTP ${res.status} for ${url}`);
-      }
-    } else {
-      html = await res.text();
-    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    html = await res.text();
   } catch (err) {
-    console.error('View load failed:', path, url, err);
-    html = `
-      <section class="section panel">
-        <header class="section-head">
-          <h2>Page not found</h2>
-          <p class="kicker">We couldn’t load <code>${url.replace(location.origin,'')}</code>.</p>
-          <p>Quick checks:</p>
-          <ul class="checklist">
-            <li>File exists in <code>views/</code> on the published branch</li>
-            <li>Exact name &amp; case: <code>${routes[path] || routes['/home']}</code></li>
-            <li>GitHub Pages “Source” points to this folder</li>
-          </ul>
-        </header>
-        <p><a class="btn btn-primary" href="#/home">Back to Home</a></p>
-      </section>`;
+    console.error('[View load failed]', path, '→', url, err);
+    // If Home failed, render a graceful inline fallback so your site is usable
+    if ((path || '/home') === '/home') {
+      html = inlineHome;
+    } else {
+      html = `
+        <section class="section panel">
+          <header class="section-head">
+            <h2>Page not found</h2>
+            <p class="kicker">We couldn’t load <code>${url.replace(location.origin,'')}</code>.</p>
+            <p>Quick checks:</p>
+            <ul class="checklist">
+              <li>File exists in <code>views/</code> on the published branch</li>
+              <li>Exact name &amp; case: <code>${routes[path] || routes['/home']}</code></li>
+              <li>Pages “Source” is <strong>main</strong> and folder is <strong>root</strong></li>
+            </ul>
+          </header>
+          <p><a class="btn btn-primary" href="#/home">Back to Home</a></p>
+        </section>`;
+    }
   }
 
   app.innerHTML = html;
@@ -90,7 +110,7 @@ async function render(path) {
     setTimeout(()=>app.classList.remove('fade-in'),200);
   }
 
-  // Accessibility: focus first heading
+  // Move focus to first heading for a11y
   const firstH = app.querySelector('h1,h2,h3,[role="heading"]');
   if (firstH) firstH.setAttribute('tabindex','-1'), firstH.focus({ preventScroll: true });
 
@@ -160,7 +180,7 @@ function closeMobileMenuOnNavigate(){
 
 /* ---------- Page interactions ---------- */
 function bindPageInteractions(){
-  // Intersection reveal
+  // Reveal
   const animated = document.querySelectorAll('[data-animate]');
   if ('IntersectionObserver' in window && animated.length){
     const ob = new IntersectionObserver((ents)=>{
@@ -171,7 +191,7 @@ function bindPageInteractions(){
     animated.forEach(el=>el.setAttribute('data-animate','in'));
   }
 
-  // Typewriter headline
+  // Typewriter
   const tw = document.querySelector('.typewriter');
   if(tw){
     const lines = safeJSON(tw.dataset.rotate, []);
@@ -189,7 +209,7 @@ function bindPageInteractions(){
     }
   }
 
-  // Blink sequence for audience cards
+  // Blink sequence
   const auds = document.querySelectorAll('.aud-card--blink');
   if (auds.length && !prefersReduced()){
     let idx = 0;
@@ -224,7 +244,7 @@ function bindPageInteractions(){
     if(fileInput) fileInput.addEventListener('change', showMock);
   }
 
-  // ROI calculator (static)
+  // ROI calculator
   const roiForm = document.getElementById('roi-form');
   if(roiForm){
     roiForm.addEventListener('submit', (e)=>{
@@ -242,7 +262,7 @@ function bindPageInteractions(){
     });
   }
 
-  // Neon dash hover (re-bind after render)
+  // Neon dash hover
   document.querySelectorAll('.menu__links a').forEach(a=>{
     a.addEventListener('mouseenter', ()=>a.classList.add('neon'));
     a.addEventListener('mouseleave', ()=>a.classList.remove('neon'));
@@ -252,7 +272,7 @@ function bindPageInteractions(){
 /* ---------- Helpers ---------- */
 function safeJSON(str, fallback){ try{ return JSON.parse(str||''); }catch{ return fallback; }}
 
-/* ---------- App init ---------- */
+/* ---------- Init ---------- */
 ready(async ()=>{
   if (!location.hash || location.hash === '#') { location.hash = '/home'; }
   await loadIncludes();
