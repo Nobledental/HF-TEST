@@ -188,7 +188,7 @@ function bindHeader() {
   const pills = qsa('.theme-switch .pill');
   const root  = document.body;
   const saved = localStorage.getItem('hf.theme');
-  const defaultTheme = saved || root.className || 'theme-ocean';
+  const defaultTheme = saved || root.className || 'theme-aurora';
   setTheme(defaultTheme);
 
   pills.forEach(p => p.addEventListener('click', () => setTheme(p.dataset.theme)));
@@ -203,14 +203,17 @@ function bindHeader() {
       x.setAttribute('aria-pressed', on ? 'true':'false');
     });
     // meta theme-color to tint status bars
-    const meta = qs('meta[name="theme-color"]');
-    if (meta) {
-      const color =
-        theme === 'theme-dawn'   ? '#f7f9fc' :
-        theme === 'theme-sterile'? '#ffffff' :
-        '#050816';
-      meta.setAttribute('content', color);
-    }
+    const themeColor = {
+      'theme-sterile': '#ffffff',
+      'theme-dawn'   : '#f7f9fc',
+      'theme-ocean'  : '#050816',
+      'theme-aurora' : '#050816',
+      'theme-onyx'   : '#040612',
+      'theme-royal'  : '#0b061a'
+    };
+    qsa('meta[name="theme-color"]').forEach(meta => {
+      meta.setAttribute('content', themeColor[theme] || '#050816');
+    });
   }
 
   // Neon dash hover on top-level links
@@ -395,6 +398,73 @@ function bindPageInteractions(){
       card.style.background = `color-mix(in oklab, var(--panel) 86%, transparent)`;
     });
   });
+
+  /* metric counters */
+  (() => {
+    const counters = qsa('[data-count]');
+    if (!counters.length) return;
+
+    const cache = new Map();
+    const formatNumber = (value, decimals) => {
+      if (!cache.has(decimals)) {
+        cache.set(decimals, new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }));
+      }
+      return cache.get(decimals).format(value);
+    };
+    const setText = (el, value) => {
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix   = el.dataset.suffix || '';
+      const formatted = formatNumber(value, decimals);
+      el.textContent = `${formatted}${suffix}`;
+    };
+
+    if (prefersReduced()) {
+      counters.forEach(el => setText(el, parseFloat(el.dataset.count || '0')));
+      return;
+    }
+
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const seen = new WeakSet();
+    const play = (el) => {
+      const target = parseFloat(el.dataset.count || '0');
+      const duration = Math.max(400, parseInt(el.dataset.duration || '1200', 10));
+      let start = null;
+      const step = (ts) => {
+        if (start === null) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const eased = easeOut(progress);
+        const current = progress === 1 ? target : target * eased;
+        setText(el, current);
+        if (progress < 1) {
+          const id = requestAnimationFrame(step);
+          FX.raf.add(id);
+        } else {
+          setText(el, target);
+        }
+      };
+      setText(el, 0);
+      const id = requestAnimationFrame(step);
+      FX.raf.add(id);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !seen.has(entry.target)) {
+          seen.add(entry.target);
+          play(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach(el => {
+      setText(el, 0);
+      io.observe(el);
+    });
+  })();
 
   /* CTA buttons with [data-nav="patient|hospital|insurer"] */
   qsa('[data-nav]').forEach(btn=>{
