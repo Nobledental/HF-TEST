@@ -1,23 +1,18 @@
-/* =========================================================
-   HealthFlo App — SPA Router + Interactions (GH Pages safe)
-   • Subpath-aware URL resolve
-   • Cache-bust on fetch
-   • Inline fallback for Home view
-   ========================================================= */
+/* ===============================================
+   HealthFlo — Subpath-safe SPA + Advanced UX
+   =============================================== */
 
 function ready(fn){document.readyState!=='loading'?fn():document.addEventListener('DOMContentLoaded',fn);}
 const sleep = (ms)=>new Promise(r=>setTimeout(r,ms));
 const prefersReduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const resolveURL = (p) => new URL(p, document.baseURI).href;
 const cacheBust = () => `?v=${Date.now()}`;
 
-/* Resolve a relative path against current site base (handles /HF-TEST/) */
-const resolveURL = (p) => new URL(p, document.baseURI).href;
-
-/* ---------- Includes (header/footer) ---------- */
+/* ---------- Includes ---------- */
 async function loadIncludes() {
   const nodes = document.querySelectorAll('[data-include]');
   await Promise.all([...nodes].map(async (n) => {
-    const rel = n.getAttribute('data-include');  // e.g. "partials/header.html"
+    const rel = n.getAttribute('data-include'); // relative!
     const url = resolveURL(rel) + cacheBust();
     try {
       const res = await fetch(url, { cache: 'no-store' });
@@ -32,7 +27,7 @@ async function loadIncludes() {
   }));
 }
 
-/* ---------- Routes (relative paths) ---------- */
+/* ---------- Routes ---------- */
 const routes = {
   '/home':     'views/landing.html',
   '/patient':  'views/patient.html',
@@ -40,32 +35,6 @@ const routes = {
   '/insurer':  'views/insurer.html'
 };
 const routeURL = (path) => resolveURL(routes[path] || routes['/home']) + cacheBust();
-
-/* ---------- Minimal inline HOME fallback (renders if landing.html 404s) ---------- */
-const inlineHome = `
-<section class="section panel" data-animate>
-  <header class="section-head center">
-    <h1>HealthFlo Healthcare</h1>
-    <p class="kicker">Connected care for Patients, Hospitals, and Insurers.</p>
-  </header>
-  <div class="aud-grid" style="margin-top:1rem">
-    <a class="aud-card aud-card--blink" href="#/patient">
-      <div class="aud-ico">🧑‍⚕️</div>
-      <h3>Patient</h3>
-      <p>Compare & buy policies, explore treatment packages, book specialists.</p>
-    </a>
-    <a class="aud-card aud-card--blink" href="#/hospital">
-      <div class="aud-ico">🏥</div>
-      <h3>Hospital</h3>
-      <p>RCM, empanelment, cashless everywhere, denial recovery.</p>
-    </a>
-    <a class="aud-card aud-card--blink" href="#/insurer">
-      <div class="aud-ico">📄</div>
-      <h3>Insurer</h3>
-      <p>Policy distribution, network ops, packages & pricing.</p>
-    </a>
-  </div>
-</section>`;
 
 /* ---------- Router ---------- */
 async function render(path) {
@@ -76,30 +45,18 @@ async function render(path) {
 
   let html = '';
   try {
-    let res = await fetch(url, { cache: 'no-store' });
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     html = await res.text();
   } catch (err) {
     console.error('[View load failed]', path, '→', url, err);
-    // If Home failed, render a graceful inline fallback so your site is usable
-    if ((path || '/home') === '/home') {
-      html = inlineHome;
-    } else {
-      html = `
-        <section class="section panel">
-          <header class="section-head">
-            <h2>Page not found</h2>
-            <p class="kicker">We couldn’t load <code>${url.replace(location.origin,'')}</code>.</p>
-            <p>Quick checks:</p>
-            <ul class="checklist">
-              <li>File exists in <code>views/</code> on the published branch</li>
-              <li>Exact name &amp; case: <code>${routes[path] || routes['/home']}</code></li>
-              <li>Pages “Source” is <strong>main</strong> and folder is <strong>root</strong></li>
-            </ul>
-          </header>
+    html = `
+      <section class="section panel">
+        <header class="section-head">
+          <h2>Page not found</h2>
+          <p class="kicker">We couldn’t load <code>${url.replace(location.origin,'')}</code>.</p>
           <p><a class="btn btn-primary" href="#/home">Back to Home</a></p>
-        </section>`;
-    }
+      </section>`;
   }
 
   app.innerHTML = html;
@@ -110,7 +67,7 @@ async function render(path) {
     setTimeout(()=>app.classList.remove('fade-in'),200);
   }
 
-  // Move focus to first heading for a11y
+  // Focus first heading
   const firstH = app.querySelector('h1,h2,h3,[role="heading"]');
   if (firstH) firstH.setAttribute('tabindex','-1'), firstH.focus({ preventScroll: true });
 
@@ -125,9 +82,9 @@ function onRouteChange(){
 }
 window.addEventListener('hashchange', onRouteChange);
 
-/* ---------- Header interactions (after includes) ---------- */
+/* ---------- Header interactions ---------- */
 function bindHeader() {
-  // mobile menu
+  // Mobile menu
   const toggles = document.querySelectorAll('.nav__toggle');
   toggles.forEach((toggle)=>{
     const menu = document.getElementById('nav-menu');
@@ -138,7 +95,7 @@ function bindHeader() {
     });
   });
 
-  // theme switch
+  // Theme switch (right side)
   const pills = document.querySelectorAll('.theme-switch .pill');
   const root = document.body;
   const saved = localStorage.getItem('hf.theme');
@@ -178,9 +135,9 @@ function closeMobileMenuOnNavigate(){
   });
 }
 
-/* ---------- Page interactions ---------- */
+/* ---------- Page interactions & FX ---------- */
 function bindPageInteractions(){
-  // Reveal
+  // Scroll reveal
   const animated = document.querySelectorAll('[data-animate]');
   if ('IntersectionObserver' in window && animated.length){
     const ob = new IntersectionObserver((ents)=>{
@@ -209,70 +166,82 @@ function bindPageInteractions(){
     }
   }
 
-  // Blink sequence
+  // Blink sequence for audience cards: Patient → Hospital → Insurer
   const auds = document.querySelectorAll('.aud-card--blink');
   if (auds.length && !prefersReduced()){
     let idx = 0;
     const id = setInterval(()=>{
       auds.forEach((a,i)=>a.classList.toggle('is-on', i===idx));
       idx = (idx+1)%auds.length;
-    }, 1600);
+    }, 1500);
     window.addEventListener('hashchange', ()=>clearInterval(id), { once:true });
   } else {
     auds.forEach(a=>a.classList.add('is-on'));
   }
 
-  // Coverage mock
-  const drop = document.getElementById('policy-drop');
-  if(drop){
-    const fileInput = document.getElementById('policy-file');
-    const out = document.getElementById('coverage-results');
-    const list = document.getElementById('coverage-checklist');
-    const showMock = ()=>{
-      if(out) out.hidden = false;
-      if(list) list.innerHTML = `
-        <li>Sum Insured: <strong>₹10,00,000</strong></li>
-        <li>Room Rent: <strong>Single (no cap)</strong></li>
-        <li>Co-pay: <strong>0%</strong> (up to age 55)</li>
-        <li>Waiting periods: <strong>2 yrs</strong> (specified ailments)</li>
-        <li>Pre/Post Hospitalization: <strong>30/60 days</strong></li>`;
-    };
-    drop.addEventListener('click', ()=>fileInput && fileInput.click());
-    drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('dz--over'); });
-    drop.addEventListener('dragleave', ()=>drop.classList.remove('dz--over'));
-    drop.addEventListener('drop', e=>{ e.preventDefault(); drop.classList.remove('dz--over'); showMock(); });
-    if(fileInput) fileInput.addEventListener('change', showMock);
+  // Hero sparkles canvas (no libs)
+  const c = document.getElementById('hero-sparkles');
+  if (c){
+    const ctx = c.getContext('2d');
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    let w, h, points = [];
+    function resize(){
+      w = c.clientWidth; h = c.clientHeight;
+      c.width = w * DPR; c.height = h * DPR; ctx.scale(DPR, DPR);
+      points = Array.from({length: 90}, ()=>({
+        x: Math.random()*w, y: Math.random()*h*0.8 + h*0.1,
+        r: Math.random()*1.6 + .4, vx: (Math.random()-.5)*.15, vy:(Math.random()-.5)*.15, a: Math.random()
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      points.forEach(p=>{
+        p.x += p.vx; p.y += p.vy; p.a += 0.02;
+        if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1;
+        const alpha = .25 + .25*Math.sin(p.a);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(154,216,255,${alpha})`;
+        ctx.fill();
+      });
+      if(!prefersReduced()) requestAnimationFrame(draw);
+    }
+    resize(); draw(); window.addEventListener('resize', resize);
   }
 
-  // ROI calculator
-  const roiForm = document.getElementById('roi-form');
-  if(roiForm){
-    roiForm.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(roiForm).entries());
-      const claims = +data.claims || 0;
-      const bill   = +data.bill   || 0;
-      const denial = +data.denial || 14;
-      const improvedDenial = Math.max(denial - 7, 1);
-      const extra = Math.round(claims * bill * ((denial - improvedDenial)/100) * 3);
-      const cashEl = document.getElementById('roi-cashin');
-      const denEl  = document.getElementById('roi-denial');
-      if (cashEl) cashEl.textContent = `₹${extra.toLocaleString('en-IN')}`;
-      if (denEl)  denEl.textContent  = `${denial}% → ${improvedDenial}%`;
+  // Enhance spotlight cards: ripple on hover
+  document.querySelectorAll('.spot-card').forEach(card=>{
+    card.addEventListener('mousemove', (e)=>{
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left; const y = e.clientY - r.top;
+      card.style.setProperty('--mx', `${x}px`);
+      card.style.setProperty('--my', `${y}px`);
+      card.style.background = `radial-gradient(300px 200px at var(--mx) var(--my), rgba(154,216,255,.14), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02))`;
     });
-  }
+    card.addEventListener('mouseleave', ()=>{
+      card.style.background = `linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02))`;
+    });
+  });
 
-  // Neon dash hover
+  // Route helpers on CTA buttons
+  document.querySelectorAll('[data-nav]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const role = btn.getAttribute('data-nav');
+      if (role) location.hash = `/${role}`;
+    });
+  });
+
+  // Neon nav hover (bind after render too)
   document.querySelectorAll('.menu__links a').forEach(a=>{
     a.addEventListener('mouseenter', ()=>a.classList.add('neon'));
     a.addEventListener('mouseleave', ()=>a.classList.remove('neon'));
   });
 }
 
-/* ---------- Helpers ---------- */
-function safeJSON(str, fallback){ try{ return JSON.parse(str||''); }catch{ return fallback; }}
+/* Helpers */
+function safeJSON(str, fallback){ try{ return JSON.parse(str||''); }catch{ return fallback; } }
 
-/* ---------- Init ---------- */
+/* Init */
 ready(async ()=>{
   if (!location.hash || location.hash === '#') { location.hash = '/home'; }
   await loadIncludes();
