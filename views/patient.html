@@ -1,15 +1,242 @@
-<section class="section panel tone-patient">
-  <header class="section-head center" data-animate>
-    <h2>Patients</h2>
-    <p class="kicker">Compare insurance, explore packages, know your coverage, book care.</p>
-  </header>
+<!-- views/patient.html -->
+<section class="hero" aria-label="Patient gateway hero">
+  <div class="hero__bg">
+    <div class="hero__sunrise" aria-hidden="true"></div>
+    <div class="hero__glass" aria-hidden="true"></div>
+  </div>
 
-  <div class="grid-lg">
-    <a class="select-card" href="#/patient#policies"><h3>Compare & Buy Policies</h3><p>Side-by-side benefits and exclusions.</p></a>
-    <a class="select-card" href="#/patient#packages"><h3>Treatment Packages</h3><p>Transparent pricing across hospitals + EMI.</p></a>
-    <a class="select-card" href="#/patient#coverage"><h3>Know Your Coverage</h3><p>Upload your policy to reveal sub-limits & co-pay.</p></a>
-    <a class="select-card" href="#/patient#advocacy"><h3>Denials & Ombudsman</h3><p>Escalation desk for rejections/short-settlements.</p></a>
-    <a class="select-card" href="#/patient#ops"><h3>Book Specialists</h3><p>Trusted doctors, reminders & follow-ups.</p></a>
-    <a class="select-card" href="#/patient#commerce"><h3>Medicines & Home Tests</h3><p>Member discounts • 24h dispatch*</p></a>
+  <div class="hero__copy" data-animate>
+    <p class="eyebrow">Patient Gateway</p>
+    <h1 class="hero__title">
+      Get care on your terms — <span class="hl">clear costs</span>, <span class="hl">fast approvals</span>, and <span class="hl">real support</span>.
+    </h1>
+    <p class="hero__sub">
+      Compare policies, browse treatment packages with add-ons, check coverage, book specialists, and get meds &amp; labs at home.
+      <span class="typewriter typing"
+        data-rotate='[
+          "Transparent pricing · Zero surprises",
+          "Policy comparison · Room rent & co-pay clarity",
+          "Book specialist consults · Track claim status"
+        ]'></span>
+    </p>
+
+    <div class="hero__cta-row">
+      <a href="#/patient" class="btn btn-primary">Start now</a>
+      <a href="#/home" class="btn btn-ghost">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- Primary quick actions -->
+<section class="spotlights" aria-labelledby="patient-actions-title">
+  <div class="center" data-animate>
+    <h2 id="patient-actions-title">Do more in minutes</h2>
+    <p class="hero__sub">Pick a card to continue. You can switch anytime.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <!-- Compare & Buy Policies -->
+    <a class="spot-card" href="#/patient" aria-label="Compare and buy policies" data-animate>
+      <h3>Compare &amp; buy health insurance</h3>
+      <p>Instant quotes, side-by-side benefits, network checks — no hidden fees.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Explore more</span></div>
+    </a>
+
+    <!-- Treatment packages -->
+    <a class="spot-card" href="#/patient" aria-label="Treatment packages with add-ons" data-animate>
+      <h3>Treatment packages &amp; add-ons</h3>
+      <p>Transparent bundles from verified hospitals. Choose perks that matter.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Explore more</span></div>
+    </a>
+
+    <!-- Know your coverage -->
+    <a class="spot-card" href="#policy" aria-label="Know your policy coverage" data-animate>
+      <h3>Know your coverage</h3>
+      <p>Room rent caps, co-pay, exclusions, waiting periods — explained.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Explore more</span></div>
+    </a>
+
+    <!-- Denial / Ombudsman -->
+    <a class="spot-card" href="#support" aria-label="Denial, rejection, short settlement support" data-animate>
+      <h3>Denials &amp; short settlements</h3>
+      <p>Structured appeals &amp; Ombudsman support for tough cases.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Get help</span></div>
+    </a>
+
+    <!-- Book Specialists -->
+    <a class="spot-card" href="#book" aria-label="Book specialists" data-animate>
+      <h3>Book specialists</h3>
+      <p>Top surgeons &amp; physicians with upfront consult fees &amp; slots.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Find a doctor</span></div>
+    </a>
+
+    <!-- Medicines at home -->
+    <a class="spot-card" href="#pharmacy" aria-label="Medicines at home" data-animate>
+      <h3>Medicines at home</h3>
+      <p>Registered users get offers &amp; 24-hour delivery windows.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Order now</span></div>
+    </a>
+
+    <!-- Labs at home -->
+    <a class="spot-card" href="#labs" aria-label="Book lab tests at home" data-animate>
+      <h3>Book lab tests at home</h3>
+      <p>Phlebotomist visit, sanitized kits, rapid reports, bundled rates.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Book a test</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- Packages preview -->
+<section class="spotlights" aria-labelledby="packages-title">
+  <div class="center" data-animate>
+    <h2 id="packages-title">Popular treatment packages</h2>
+    <p class="hero__sub">Indicative budgets. Add optional benefits during checkout.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <a class="spot-card" href="#/patient">
+      <h3>Knee Replacement (Unilateral)</h3>
+      <p>From ₹1.6L — package includes OT, implants tier-L2, standard room.</p>
+      <span class="chip">Add-ons: Room upgrade · ICU cover · Rehab</span>
+    </a>
+
+    <a class="spot-card" href="#/patient">
+      <h3>Gall Bladder Removal (Laparoscopic)</h3>
+      <p>From ₹55K — day care in many hospitals, quick recovery.</p>
+      <span class="chip">Add-ons: Room upgrade · Follow-up</span>
+    </a>
+
+    <a class="spot-card" href="#/patient">
+      <h3>Cesarean Delivery</h3>
+      <p>From ₹85K — NABH facilities, lactation support on request.</p>
+      <span class="chip">Add-ons: NICU buffer · Private suite</span>
+    </a>
+
+    <a class="spot-card" href="#/patient">
+      <h3>Cataract (Phaco with IOL)</h3>
+      <p>From ₹22K per eye — cashless where eligible.</p>
+      <span class="chip">Add-ons: Premium IOL · Laser</span>
+    </a>
+  </div>
+</section>
+
+<!-- Coverage checker -->
+<section id="policy" class="spotlights" aria-labelledby="coverage-title">
+  <div class="center" data-animate>
+    <h2 id="coverage-title">Know your policy coverage</h2>
+    <p class="hero__sub">Drop your policy PDF below to see key benefits and flags. (Demo preview)</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card" style="grid-column: 1 / -1;">
+      <h3>Upload your policy</h3>
+      <p class="hero__sub" style="margin:.4rem 0 1rem">We’ll extract room rent caps, co-pay, waiting periods, pre/post cover, and more.</p>
+
+      <div id="policy-drop"
+           class="patient-card"
+           style="display:grid; place-items:center; padding:1.6rem; border-radius:16px; border:1px dashed var(--line); background:var(--glass); cursor:pointer">
+        <input id="policy-file" type="file" accept=".pdf" hidden />
+        <div style="text-align:center">
+          <div class="badge">Demo</div>
+          <p style="margin:.6rem 0 0; color:var(--ink-muted)">Click to upload or drag &amp; drop PDF here</p>
+        </div>
+      </div>
+
+      <div id="coverage-results" hidden style="margin-top:1rem">
+        <h4 style="margin:.6rem 0">Coverage summary</h4>
+        <ul id="coverage-checklist" class="service-card__list" style="margin:.4rem 0 0"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking & Home services -->
+<section id="book" class="spotlights" aria-labelledby="booking-title">
+  <div class="center" data-animate>
+    <h2 id="booking-title">Book specialists &amp; home services</h2>
+    <p class="hero__sub">Convenient options with upfront pricing.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <a class="spot-card" href="#/patient">
+      <h3>Consult a specialist</h3>
+      <p>OPD from ₹399 — ENT, Ortho, Cardio, Gyn, Neuro &amp; more.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Find a slot</span></div>
+    </a>
+
+    <a class="spot-card" href="#pharmacy">
+      <h3>Medicines at home</h3>
+      <p>Registered users get 24-hour delivery windows &amp; periodic offers.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Order now</span></div>
+    </a>
+
+    <a class="spot-card" href="#labs">
+      <h3>Blood tests at home</h3>
+      <p>CBC, HbA1c, LFT, Lipid profile &amp; more — bundled rates.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Book a test</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- Support strip -->
+<section id="support" class="spotlights" aria-labelledby="support-title">
+  <div class="center" data-animate>
+    <h2 id="support-title">Denied? Short-settled? We’ve got you.</h2>
+    <p class="hero__sub">Escalation playbooks, documentation checklists, and Ombudsman assistance.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <a class="spot-card" href="#/patient">
+      <h3>Rejections &amp; Denials</h3>
+      <p>Identify root causes, prepare responses, and resubmit with confidence.</p>
+      <span class="chip">Turnaround focus</span>
+    </a>
+
+    <a class="spot-card" href="#/patient">
+      <h3>Short settlement review</h3>
+      <p>Line-item reconciliation to recover what’s rightfully yours.</p>
+      <span class="chip">Transparent trail</span>
+    </a>
+
+    <a class="spot-card" href="#/patient">
+      <h3>Ombudsman assistance</h3>
+      <p>Formal appeals, templated drafts, and case tracking support.</p>
+      <span class="chip">Compliant pathway</span>
+    </a>
+  </div>
+</section>
+
+<!-- Benefits & FAQs -->
+<section class="spotlights" aria-labelledby="benefits-title">
+  <div class="center" data-animate>
+    <h2 id="benefits-title">Why patients choose HealthFlo</h2>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Clear, upfront pricing</h3>
+      <p>Package-first discovery to eliminate last-minute surprises.</p>
+    </div>
+    <div class="spot-card">
+      <h3>Trusted partner hospitals</h3>
+      <p>NABH network with transparent tariffs and SLAs.</p>
+    </div>
+    <div class="spot-card">
+      <h3>Faster decisions</h3>
+      <p>Structured documents &amp; assisted submissions reduce delays.</p>
+    </div>
+    <div class="spot-card">
+      <h3>End-to-end support</h3>
+      <p>From policy comparison to discharge &amp; post-care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="center" style="padding: 1rem 1.2rem 2.6rem" data-animate>
+  <p class="hero__sub">Ready to continue?</p>
+  <div class="hero__cta-row" style="justify-content:center">
+    <a href="#/home" class="btn btn-ghost">Back</a>
+    <a href="#/patient" class="btn btn-primary">Start as Patient</a>
   </div>
 </section>
