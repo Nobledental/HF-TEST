@@ -1,48 +1,74 @@
-<header class="hdr glass">
-  <nav class="nav wrap" aria-label="Primary">
-    <a href="#/home" class="brand" aria-label="HealthFlo Home">
-      <svg class="brand__mark" viewBox="0 0 60 60" aria-hidden="true">
-        <defs><linearGradient id="bgrad" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stop-color="#00BFA6"/><stop offset="100%" stop-color="#0057FF"/></linearGradient></defs>
-        <circle cx="30" cy="30" r="18" fill="url(#bgrad)" class="brand__pulse"/>
-        <path d="M14 30h12l4-8 6 16 4-8h12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-      <span class="brand__name">HealthFlo Healthcare</span>
+<!-- partials/header.html -->
+<header class="site-header" role="banner">
+  <div class="header__bar">
+    <a href="#/home" class="brand" aria-label="HealthFlo Healthcare — Home">
+      <span class="brand__mark" aria-hidden="true">
+        <span class="brand__pulse"></span>
+        <span class="brand__glow"></span>
+      </span>
+      <span class="brand__text">
+        <strong>HealthFlo</strong> <span class="thin">Healthcare</span>
+      </span>
     </a>
 
-    <ul class="menu__links">
-      <li><a href="#/home">Home</a></li>
-      <li><a href="#/patient">Patients</a></li>
-      <li><a href="#/hospital">Hospitals</a></li>
-      <li><a href="#/insurer">Insurers</a></li>
-    </ul>
+    <nav class="menu" aria-label="Primary">
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
 
-    <div class="spacer"></div>
+      <div id="nav-menu" class="menu__panel" data-open="false">
+        <ul class="menu__links" role="list">
+          <li><a href="#/home">Home</a></li>
+          <li class="has-sub">
+            <a href="#/patient">Patients</a>
+            <div class="mega">
+              <div class="mega__col">
+                <h4>Start here</h4>
+                <a href="#/patient" class="mini">Compare &amp; buy policies</a>
+                <a href="#/patient" class="mini">Treatment packages</a>
+                <a href="#/patient" class="mini">Know your coverage</a>
+              </div>
+              <div class="mega__col">
+                <h4>Care services</h4>
+                <a href="#/patient" class="mini">Book specialists</a>
+                <a href="#/patient" class="mini">Medicines in 24h</a>
+                <a href="#/patient" class="mini">Blood test at home</a>
+              </div>
+            </div>
+          </li>
+          <li class="has-sub">
+            <a href="#/hospital">Hospitals</a>
+            <div class="mega">
+              <div class="mega__col">
+                <h4>RCM suite</h4>
+                <a href="#/hospital" class="mini">Empanelment</a>
+                <a href="#/hospital" class="mini">Cashless Everywhere</a>
+                <a href="#/hospital" class="mini">Denial &amp; Recovery</a>
+              </div>
+              <div class="mega__col">
+                <h4>Compliance</h4>
+                <a href="#/hospital" class="mini">ROHINI, NABH</a>
+                <a href="#/hospital" class="mini">GIPSA workflows</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#/insurer">Insurers</a></li>
+        </ul>
 
-    <!-- Theme switcher (right aligned) -->
-    <div class="theme-switch" role="group" aria-label="Theme switch">
-      <button class="pill" data-theme="theme-dawn" aria-pressed="true">Dawn</button>
-      <button class="pill" data-theme="theme-care">Care</button>
-      <button class="pill" data-theme="theme-neon">Neon</button>
-      <button class="pill" data-theme="theme-cosmos">Cosmos</button>
-    </div>
+        <div class="menu__ctas">
+          <a class="btn btn-secondary" href="mailto:info@healthflo.in">Contact</a>
+          <a class="btn btn-primary" href="#/hospital">Get Started</a>
+        </div>
+      </div>
+    </nav>
 
-    <!-- Mobile toggle -->
-    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <div id="nav-menu" class="menu">
-      <ul class="menu__links menu__links--drawer">
-        <li><a href="#/home">Home</a></li>
-        <li><a href="#/patient">Patients</a></li>
-        <li><a href="#/hospital">Hospitals</a></li>
-        <li><a href="#/insurer">Insurers</a></li>
-      </ul>
-      <div class="menu__ctas">
-        <a class="btn btn-ghost" href="#/home#demo">Watch 90-sec demo</a>
-        <a class="btn btn-primary" href="#/patient">Start</a>
+    <div class="header__side">
+      <!-- Theme switch lives on the right -->
+      <div class="theme-switch" role="group" aria-label="Theme switch">
+        <button class="pill" data-theme="theme-dawn" aria-pressed="false" title="Dawn">Dawn</button>
+        <button class="pill" data-theme="theme-ocean" aria-pressed="false" title="Ocean">Ocean</button>
+        <button class="pill" data-theme="theme-onyx" aria-pressed="false" title="Onyx">Onyx</button>
       </div>
     </div>
-  </nav>
+  </div>
 </header>
