@@ -1,12 +1,240 @@
-<section class="section panel">
-  <header class="section-head center" data-animate>
-    <h2>Insurers</h2>
-    <p class="kicker">Policy sales to high-intent patients; hospital relations; pricing & APIs.</p>
-  </header>
+<!-- views/insurer.html -->
+<section class="hero" aria-label="Insurer growth hero">
+  <div class="hero__bg">
+    <div class="hero__sunrise" aria-hidden="true"></div>
+    <div class="hero__glass" aria-hidden="true"></div>
+  </div>
 
-  <div class="grid-lg">
-    <a class="select-card" href="#/insurer#sales"><h3>Policy Sales</h3><p>Compare → Disclose → Pay → Issue.</p></a>
-    <a class="select-card" href="#/insurer#relations"><h3>Hospital Relations</h3><p>Network hygiene, exception tracking, city/specialty TAT.</p></a>
-    <a class="select-card" href="#/insurer#pricing"><h3>Pricing & APIs</h3><p>Tiered pricing, status hooks, secure placements.</p></a>
+  <div class="hero__copy" data-animate>
+    <p class="eyebrow">HealthFlo — Insurer Distribution & Network Ops</p>
+    <h1 class="hero__title">
+      Policy distribution at scale, <span class="hl">network hospital performance</span>, and
+      <span class="hl">transparent packages</span>.
+    </h1>
+    <p class="hero__sub">
+      Launch city-wise funnels, manage hospital relationships, align packages & pricing, and track conversion and loss ratios —
+      all in one orchestrated view.
+      <span class="typewriter typing"
+        data-rotate='[
+          "City-by-city acquisition · Verified leads · Conversion dashboards",
+          "Network hospital ops · SOP alignment · TAT visibility",
+          "Packages & pricing · Treatment catalogs · Fraud guardrails"
+        ]'></span>
+    </p>
+
+    <div class="hero__cta-row">
+      <a href="#/insurer" class="btn btn-primary">Open insurer console</a>
+      <a href="#/home" class="btn btn-ghost">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- High-level highlights -->
+<section class="spotlights" aria-labelledby="ins-highlights-title">
+  <div class="center" data-animate>
+    <h2 id="ins-highlights-title">What you can run with HealthFlo</h2>
+    <p class="hero__sub">Distribution → Network Ops → Packages &amp; Pricing → Analytics → Compliance</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <a class="spot-card" href="#distribution">
+      <h3>Policy distribution</h3>
+      <p>City-by-city funnels, embedded journeys, verified lead pipes.</p>
+      <span class="chip">Acquisition</span>
+    </a>
+    <a class="spot-card" href="#network">
+      <h3>Hospital relationship ops</h3>
+      <p>Empanelment SLAs, tariffs, SOP alignment, TAT monitoring.</p>
+      <span class="chip">Network</span>
+    </a>
+    <a class="spot-card" href="#packages">
+      <h3>Packages &amp; pricing</h3>
+      <p>Treatment catalogs with standardized inclusions &amp; exclusions.</p>
+      <span class="chip">Clarity</span>
+    </a>
+    <a class="spot-card" href="#analytics">
+      <h3>Analytics &amp; dashboards</h3>
+      <p>Lead → bind conversion, LOS, denial patterns, and loss ratio.</p>
+      <span class="chip">Insight</span>
+    </a>
+  </div>
+</section>
+
+<!-- Distribution engine -->
+<section id="distribution" class="spotlights" aria-labelledby="dist-title">
+  <div class="center" data-animate>
+    <h2 id="dist-title">Policy distribution engine</h2>
+    <p class="hero__sub">Acquisition modeled by city cohorts and verified pipelines.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Lead funnels</h3>
+      <p>City microsites, partner channels, and campaign hooks with attribution.</p>
+      <div class="aud-slider" aria-hidden="true"><span>Explore more</span></div>
+    </div>
+    <div class="spot-card">
+      <h3>Verification &amp; scoring</h3>
+      <p>KYC checks, intent scoring, and de-duplication to protect CAC.</p>
+      <span class="chip">Efficient CAC</span>
+    </div>
+    <div class="spot-card">
+      <h3>Bind workflows</h3>
+      <p>Quote → compare → bind with assisted journeys and nudges.</p>
+      <span class="chip">Higher binds</span>
+    </div>
+    <div class="spot-card">
+      <h3>Partner marketplace</h3>
+      <p>Distribution partnerships with transparent revenue shares.</p>
+      <span class="chip">Scale</span>
+    </div>
+  </div>
+</section>
+
+<!-- Network hospital ops -->
+<section id="network" class="spotlights" aria-labelledby="net-title">
+  <div class="center" data-animate>
+    <h2 id="net-title">Network hospital operations</h2>
+    <p class="hero__sub">Visibility across empanelment, tariffs, and turnaround times.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Empanelment tracker</h3>
+      <p>Parallel submissions, status timers, and SLA reminders.</p>
+      <span class="chip">On schedule</span>
+    </div>
+    <div class="spot-card">
+      <h3>Tariff governance</h3>
+      <p>Package mapping by specialty and cost guardrails by city tier.</p>
+      <span class="chip">Standardized</span>
+    </div>
+    <div class="spot-card">
+      <h3>Cashless performance</h3>
+      <p>Pre-auth velocity, same-day rate, and exception heatmaps.</p>
+      <span class="chip">Uptime</span>
+    </div>
+    <div class="spot-card">
+      <h3>Compliance desk</h3>
+      <p>Checklist-led audits, fraud flags, and corrective actions.</p>
+      <span class="chip">Trust &amp; safety</span>
+    </div>
+  </div>
+</section>
+
+<!-- Packages & Pricing -->
+<section id="packages" class="spotlights" aria-labelledby="pkg-title">
+  <div class="center" data-animate>
+    <h2 id="pkg-title">Packages &amp; pricing alignment</h2>
+    <p class="hero__sub">Transparent inclusions and exclusions reduce disputes downstream.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Standard catalogs</h3>
+      <p>Multi-specialty catalogs with add-on benefits and guardrails.</p>
+      <span class="chip">Comparable</span>
+    </div>
+    <div class="spot-card">
+      <h3>Dynamic tiers</h3>
+      <p>City-tier based pricing with predictable buffers and audits.</p>
+      <span class="chip">Predictable</span>
+    </div>
+    <div class="spot-card">
+      <h3>Negotiation workspace</h3>
+      <p>Line-by-line change logs and approval trails for tariffs.</p>
+      <span class="chip">Accountable</span>
+    </div>
+    <div class="spot-card">
+      <h3>Member experience</h3>
+      <p>Room rent caps, co-pay, and add-ons surfaced at booking.</p>
+      <span class="chip">Fewer surprises</span>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboards & KPIs -->
+<section id="analytics" class="spotlights" aria-labelledby="ana-title">
+  <div class="center" data-animate>
+    <h2 id="ana-title">Dashboards &amp; KPIs</h2>
+    <p class="hero__sub">Understand funnel health and network performance at a glance.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Acquisition &amp; binds</h3>
+      <ul class="service-card__list" style="margin-top:.6rem">
+        <li><strong>Leads → Quote</strong> conversion</li>
+        <li><strong>Quote → Bind</strong> conversion</li>
+        <li><strong>Channel</strong> ROAS &amp; CAC</li>
+      </ul>
+    </div>
+    <div class="spot-card">
+      <h3>Operational TATs</h3>
+      <ul class="service-card__list" style="margin-top:.6rem">
+        <li>Pre-auth velocity (p50/p90)</li>
+        <li>Same-day approval %</li>
+        <li>Exceptions &amp; escalations</li>
+      </ul>
+    </div>
+    <div class="spot-card">
+      <h3>Quality &amp; risk</h3>
+      <ul class="service-card__list" style="margin-top:.6rem">
+        <li>Denial patterns &amp; root causes</li>
+        <li>Short settlement incidence</li>
+        <li>Fraud signal heatmaps</li>
+      </ul>
+    </div>
+    <div class="spot-card">
+      <h3>Unit economics</h3>
+      <ul class="service-card__list" style="margin-top:.6rem">
+        <li>Avg claim size by specialty</li>
+        <li>Length of stay by city tier</li>
+        <li>Loss ratio trends</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Lead capture (insurer) -->
+<section class="spotlights" aria-labelledby="lead-title">
+  <div class="center" data-animate>
+    <h2 id="lead-title">Start a pilot in your focus cities</h2>
+    <p class="hero__sub">Tell us your geos and timelines — we’ll assemble the playbook.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card" style="grid-column:1 / -1">
+      <form id="insurer-lead" class="mini-form" novalidate>
+        <div class="mini-form__row" style="margin-bottom:.6rem">
+          <label style="flex:1">
+            <span style="display:block; font-size:.88rem; color:var(--ink-muted)">Company</span>
+            <input type="text" name="company" placeholder="e.g., Acme Insurance" />
+          </label>
+          <label style="flex:1">
+            <span style="display:block; font-size:.88rem; color:var(--ink-muted)">Contact email</span>
+            <input type="email" name="email" placeholder="name@company.com" />
+          </label>
+          <label style="flex:1">
+            <span style="display:block; font-size:.88rem; color:var(--ink-muted)">Focus cities</span>
+            <input type="text" name="cities" placeholder="e.g., Chennai, Bengaluru, Hyderabad" />
+          </label>
+        </div>
+        <div class="menu__ctas">
+          <button class="btn btn-primary" type="submit">Request pilot</button>
+          <a class="btn btn-ghost" href="#/insurer">Reset</a>
+        </div>
+      </form>
+      <p class="hero__sub" style="margin-top:.8rem">We’ll respond with timelines, sample funnels, and an ROI model.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="center" style="padding: 1rem 1.2rem 2.6rem" data-animate>
+  <p class="hero__sub">Ready to accelerate distribution and network performance?</p>
+  <div class="hero__cta-row" style="justify-content:center">
+    <a href="#/home" class="btn btn-ghost">Back</a>
+    <a href="#/insurer" class="btn btn-primary">Start with HealthFlo</a>
   </div>
 </section>
