@@ -57,10 +57,31 @@
 
         <!-- Right: theme + CTAs -->
         <div class="menu__right">
-          <div class="theme-switch" aria-label="Theme">
-            <button class="pill is-active" data-theme="theme-dawn"   aria-pressed="true"  title="Dawn">Dawn</button>
-            <button class="pill"           data-theme="theme-onyx"   aria-pressed="false" title="Onyx">Onyx</button>
-            <button class="pill"           data-theme="theme-ocean"  aria-pressed="false" title="Ocean">Ocean</button>
+          <div class="theme-switch" aria-label="Theme" role="group">
+            <button class="pill pill--aurora is-active" data-theme="theme-aurora" aria-pressed="true" title="Aurora (signature)">
+              <span class="pill__dot" aria-hidden="true"></span>
+              Aurora
+            </button>
+            <button class="pill pill--sterile" data-theme="theme-sterile" aria-pressed="false" title="Sterile (clinical)">
+              <span class="pill__dot" aria-hidden="true"></span>
+              Sterile
+            </button>
+            <button class="pill pill--dawn" data-theme="theme-dawn" aria-pressed="false" title="Dawn (daylight)">
+              <span class="pill__dot" aria-hidden="true"></span>
+              Dawn
+            </button>
+            <button class="pill pill--ocean" data-theme="theme-ocean" aria-pressed="false" title="Ocean (deep blue)">
+              <span class="pill__dot" aria-hidden="true"></span>
+              Ocean
+            </button>
+            <button class="pill pill--onyx" data-theme="theme-onyx" aria-pressed="false" title="Onyx (dark mode)">
+              <span class="pill__dot" aria-hidden="true"></span>
+              Onyx
+            </button>
+            <button class="pill pill--royal" data-theme="theme-royal" aria-pressed="false" title="Royal (luxury)">
+              <span class="pill__dot" aria-hidden="true"></span>
+              Royal
+            </button>
           </div>
           <div class="menu__ctas">
             <a class="btn btn-secondary" data-ripple href="mailto:info@healthflo.in">
