@@ -248,3 +248,46 @@ ready(async ()=>{
   bindHeader();
   onRouteChange();
 });
+
+/* ===== Header polish: active link, submenu close, shrink on scroll, ripple ===== */
+
+// highlight active link based on hash
+function markActiveLink(){
+  const current = (location.hash || '#/home').split('?')[0];
+  document.querySelectorAll('[data-link]').forEach(a=>{
+    a.classList.toggle('is-active', a.getAttribute('href') === current);
+  });
+}
+window.addEventListener('hashchange', markActiveLink);
+markActiveLink();
+
+// close <details> submenu on outside click
+document.addEventListener('click', (e)=>{
+  const dd = document.querySelector('details[data-submenu][open]');
+  if(dd && !dd.contains(e.target)) dd.removeAttribute('open');
+});
+
+// shrink header on scroll (subtle)
+let lastY = 0;
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY || 0;
+  const shrink = y > 8 && y >= lastY;
+  header.style.transform = shrink ? 'translateY(-4px)' : 'translateY(0)';
+  header.style.boxShadow = shrink ? 'var(--shadow-2)' : 'var(--shadow-1)';
+  lastY = y;
+}, {passive:true});
+
+// ripple effect on CTAs
+document.querySelectorAll('[data-ripple]').forEach(btn=>{
+  btn.addEventListener('click', function(e){
+    const r = document.createElement('span');
+    const d = Math.max(this.clientWidth, this.clientHeight);
+    r.style.width = r.style.height = d + 'px';
+    r.style.left = (e.offsetX - d/2) + 'px';
+    r.style.top  = (e.offsetY - d/2) + 'px';
+    r.className = 'ripple';
+    this.appendChild(r);
+    setTimeout(()=>r.remove(), 600);
+  });
+});
