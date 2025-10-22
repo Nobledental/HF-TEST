@@ -1,30 +1,255 @@
-<section class="section panel">
-  <header class="section-head center" data-animate>
-    <h2>Hospitals</h2>
-    <p class="kicker">Complete Revenue Cycle Management — from compliance to cash-in.</p>
-  </header>
-
-  <div class="package-grid">
-    <article class="package-card"><header><strong>Mandatory Certification</strong><span class="price">Starter</span></header><ul><li>Rohini ID • NABH • CMCIS</li><li>Checklists & guidance</li><li>On-ground coordination</li></ul></article>
-    <article class="package-card"><header><strong>Insurer & TPA Empanelment</strong><span class="price">Network</span></header><ul><li>20+ insurers/TPAs</li><li>GIPSA assistance</li><li>End-to-end coordination</li></ul></article>
-    <article class="package-card"><header><strong>Cashless Everywhere</strong><span class="price">Access</span></header><ul><li>Non-network cashless</li><li>2 months post-empanelment</li><li>Helpdesk approvals</li></ul></article>
-    <article class="package-card"><header><strong>Denial & Recovery</strong><span class="price">Recovery</span></header><ul><li>Reconciliation & RCA</li><li>Follow-ups</li><li>Insurer recovery</li></ul></article>
+<!-- views/hospital.html -->
+<section class="hero" aria-label="Hospital growth hero">
+  <div class="hero__bg">
+    <div class="hero__sunrise" aria-hidden="true"></div>
+    <div class="hero__glass" aria-hidden="true"></div>
   </div>
 
-  <div class="card roi glass" data-animate>
-    <div class="roi__left">
-      <h3>90-day ROI Estimator</h3>
-      <form class="roi__form" id="roi-form" novalidate>
-        <label>Monthly claims volume<input type="number" name="claims" placeholder="120" required /></label>
-        <label>Avg bill size (₹)<input type="number" name="bill" placeholder="85000" required /></label>
-        <label>Current denial rate (%)<input type="number" name="denial" placeholder="14" /></label>
-        <button class="btn btn-primary" type="submit">Calculate ROI</button>
+  <div class="hero__copy" data-animate>
+    <p class="eyebrow">HealthFlo — Hospital Growth & RCM</p>
+    <h1 class="hero__title">
+      Cashflow clarity, <span class="hl">Cashless Everywhere</span>,
+      and faster <span class="hl">policy approvals</span>.
+    </h1>
+    <p class="hero__sub">
+      Get mandatory certifications, insurer &amp; TPA empanelment, instant cashless processes (even pre-network),
+      and denial recovery — all through a single command cockpit.
+    </p>
+    <div class="hero__cta-row">
+      <a href="#/hospital" class="btn btn-primary">Launch hospital cockpit</a>
+      <a href="#/home" class="btn btn-ghost">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- Executive highlights / quick nav -->
+<section class="spotlights" aria-labelledby="rcm-highlights-title">
+  <div class="center" data-animate>
+    <h2 id="rcm-highlights-title">Your RCM growth stack</h2>
+    <p class="hero__sub">Certifications → Empanelment → Cashless Everywhere → Denial &amp; Recovery → Live dashboards</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <a class="spot-card" href="#certifications">
+      <h3>Mandatory Certifications</h3>
+      <p>Rohini ID, NABH, CMCIS &amp; statutory registrations with guided checklists.</p>
+      <span class="chip">Get audit-ready</span>
+    </a>
+    <a class="spot-card" href="#empanelment">
+      <h3>Insurer &amp; TPA Empanelment</h3>
+      <p>20+ insurers &amp; major TPAs (MediAssist, MD India, FHPL, Vidal, Volo); GIPSA support.</p>
+      <span class="chip">Expand network</span>
+    </a>
+    <a class="spot-card" href="#cashless">
+      <h3>Cashless Everywhere</h3>
+      <p>Immediate cashless even before network onboarding; 2-month post-empanelment support.</p>
+      <span class="chip">Zero friction</span>
+    </a>
+    <a class="spot-card" href="#denials">
+      <h3>Denial &amp; Recovery</h3>
+      <p>Claim reconciliation, root-cause correction, insurer recovery loops.</p>
+      <span class="chip">Recover revenue</span>
+    </a>
+  </div>
+</section>
+
+<!-- Command snapshots / ROI mini-calc -->
+<section class="spotlights" aria-labelledby="command-title">
+  <div class="center" data-animate>
+    <h2 id="command-title">Command dashboard &amp; ROI</h2>
+    <p class="hero__sub">Real-time widgets and a quick ROI estimator for your leadership review.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <!-- Snapshot tiles -->
+    <div class="spot-card">
+      <h3>Cashless Pulse</h3>
+      <p>Same-day approvals, proactive pre-auth nudges, audit trails.</p>
+      <div class="metric" style="margin-top:.8rem">
+        <strong>92%</strong><span>Same-day approvals</span>
+      </div>
+    </div>
+
+    <div class="spot-card">
+      <h3>RCM Tracker</h3>
+      <ul class="service-card__list" style="margin-top:.6rem">
+        <li><strong>20+</strong> insurers active</li>
+        <li><strong>45s</strong> average pre-auth</li>
+        <li><strong>98%</strong> denial recovery</li>
+      </ul>
+    </div>
+
+    <!-- ROI calculator (wired to app.js) -->
+    <div class="spot-card" style="grid-column: 1 / -1;">
+      <h3>ROI estimator (3-month lens)</h3>
+      <p class="hero__sub" style="margin:.35rem 0 1rem">
+        Enter your monthly claims volume &amp; average bill. We’ll estimate denial recovery impact after process fixes.
+      </p>
+
+      <form id="roi-form" class="mini-form" novalidate>
+        <div class="mini-form__row" style="margin-bottom:.6rem">
+          <label style="flex:1">
+            <span style="display:block; font-size:.88rem; color:var(--ink-muted)">Monthly claims</span>
+            <input type="number" name="claims" placeholder="e.g., 120" inputmode="numeric" min="0" />
+          </label>
+          <label style="flex:1">
+            <span style="display:block; font-size:.88rem; color:var(--ink-muted)">Avg bill / claim (₹)</span>
+            <input type="number" name="bill" placeholder="e.g., 42000" inputmode="numeric" min="0" />
+          </label>
+          <label style="flex:1">
+            <span style="display:block; font-size:.88rem; color:var(--ink-muted)">Current denial %</span>
+            <input type="number" name="denial" placeholder="e.g., 14" inputmode="numeric" min="1" max="100" />
+          </label>
+        </div>
+        <div class="menu__ctas">
+          <button class="btn btn-primary" type="submit">Estimate ROI</button>
+          <a class="btn btn-ghost" href="#/hospital">Reset</a>
+        </div>
       </form>
+
+      <div class="metrics" style="margin: 1rem 0 0">
+        <div class="metric">
+          <strong id="roi-cashin">₹0</strong>
+          <span>Projected cash-in (3 mo.)</span>
+        </div>
+        <div class="metric">
+          <strong id="roi-denial">—</strong>
+          <span>Denial rate (before → after)</span>
+        </div>
+      </div>
     </div>
-    <div class="roi__right" id="roi-out" aria-live="polite">
-      <div class="roi__metric"><span>Projected extra cash-in (90 days)</span><strong id="roi-cashin">—</strong></div>
-      <div class="roi__metric"><span>Denial drop</span><strong id="roi-denial">—</strong></div>
-      <a class="btn btn-secondary" href="mailto:info@healthflo.in">Email me a PDF report</a>
+  </div>
+</section>
+
+<!-- Mandatory Certifications -->
+<section id="certifications" class="spotlights" aria-labelledby="cert-title">
+  <div class="center" data-animate>
+    <h2 id="cert-title">Mandatory certifications — done right</h2>
+    <p class="hero__sub">Guided workflows, document kits, and readiness checks that pass audits.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Rohini ID</h3>
+      <p>End-to-end assistance, data sanity checks, artifact preparation.</p>
+      <span class="chip">Industry-standard</span>
     </div>
+    <div class="spot-card">
+      <h3>NABH enablement</h3>
+      <p>Gap analysis, SOP templates, onsite readiness walks.</p>
+      <span class="chip">Quality assured</span>
+    </div>
+    <div class="spot-card">
+      <h3>CMCID / Statutory</h3>
+      <p>Compliant registrations and scheduled renewals.</p>
+      <span class="chip">Always current</span>
+    </div>
+    <div class="spot-card">
+      <h3>Fraud-prevention matrix</h3>
+      <p>Process guardrails &amp; exception governance to protect revenue.</p>
+      <span class="chip">Trust &amp; safety</span>
+    </div>
+  </div>
+</section>
+
+<!-- Empanelment -->
+<section id="empanelment" class="spotlights" aria-labelledby="emp-title">
+  <div class="center" data-animate>
+    <h2 id="emp-title">Insurance &amp; TPA empanelment</h2>
+    <p class="hero__sub">20+ insurers &amp; major TPAs with status tracking and SLA timers.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Multi-insurer desk</h3>
+      <p>MediAssist, MD India, FHPL, Vidal, Volo &amp; more with parallel submissions.</p>
+      <span class="chip">Breadth</span>
+    </div>
+    <div class="spot-card">
+      <h3>GIPSA alignment</h3>
+      <p>Methodical guidance and documentation for standard processes.</p>
+      <span class="chip">Clarity</span>
+    </div>
+    <div class="spot-card">
+      <h3>Tariff sync</h3>
+      <p>Package mapping across payers to reduce under-billing risk.</p>
+      <span class="chip">Accuracy</span>
+    </div>
+    <div class="spot-card">
+      <h3>Live trackers</h3>
+      <p>Real-time empanelment status, reminders, and nudges.</p>
+      <span class="chip">On schedule</span>
+    </div>
+  </div>
+</section>
+
+<!-- Cashless Everywhere -->
+<section id="cashless" class="spotlights" aria-labelledby="cashless-title">
+  <div class="center" data-animate>
+    <h2 id="cashless-title">Cashless Everywhere — even pre-network</h2>
+    <p class="hero__sub">Managed, compliant workflows that let you treat more insured patients today.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Pre-network support</h3>
+      <p>Enable compliant cashless prior to formal onboarding.</p>
+      <span class="chip">Faster starts</span>
+    </div>
+    <div class="spot-card">
+      <h3>2-month runway</h3>
+      <p>Post-empanelment, continue managed cashless for 60 days.</p>
+      <span class="chip">Continuity</span>
+    </div>
+    <div class="spot-card">
+      <h3>Approvals desk</h3>
+      <p>Dedicated helpdesk to coordinate pre-auth documentation &amp; calls.</p>
+      <span class="chip">Velocity</span>
+    </div>
+    <div class="spot-card">
+      <h3>Audit-ready trails</h3>
+      <p>Every step recorded with checklists and timestamps.</p>
+      <span class="chip">Compliance</span>
+    </div>
+  </div>
+</section>
+
+<!-- Denials & Recovery -->
+<section id="denials" class="spotlights" aria-labelledby="denials-title">
+  <div class="center" data-animate>
+    <h2 id="denials-title">Denial &amp; recovery — close the loop</h2>
+    <p class="hero__sub">Forensics → Corrections → Resubmission → Recovery. Then prevention.</p>
+  </div>
+
+  <div class="spot-grid" data-animate>
+    <div class="spot-card">
+      <h3>Forensic analysis</h3>
+      <p>Identify patterns across codes, docs, and payers.</p>
+      <span class="chip">Insight</span>
+    </div>
+    <div class="spot-card">
+      <h3>Root-cause fixes</h3>
+      <p>Template updates, SOP refinement, and training modules.</p>
+      <span class="chip">Sustainable</span>
+    </div>
+    <div class="spot-card">
+      <h3>Resubmission playbooks</h3>
+      <p>Turnaround kits per denial category with checklists.</p>
+      <span class="chip">Methodical</span>
+    </div>
+    <div class="spot-card">
+      <h3>Recovery tracking</h3>
+      <p>Line-item reconciliation, escalations, and settlement views.</p>
+      <span class="chip">Accountable</span>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="center" style="padding: 1rem 1.2rem 2.6rem" data-animate>
+  <p class="hero__sub">Ready to accelerate insured patient inflow and improve cashflows?</p>
+  <div class="hero__cta-row" style="justify-content:center">
+    <a href="#/home" class="btn btn-ghost">Back</a>
+    <a href="#/hospital" class="btn btn-primary">Start with HealthFlo</a>
   </div>
 </section>
