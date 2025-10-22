@@ -434,3 +434,12 @@ body.theme-ocean {
   * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .bg.grid { animation: none !important }
 }
+
+/* Button ripple */
+[data-ripple] { position: relative; overflow: hidden }
+[data-ripple] .ripple {
+  position:absolute; border-radius:50%; transform:scale(0);
+  background: color-mix(in srgb, #fff 40%, transparent);
+  opacity:.55; animation: ripple .6s ease-out forwards;
+}
+@keyframes ripple { to { transform: scale(2.4); opacity: 0 } }
