@@ -82,6 +82,100 @@ function onRouteChange(){
 }
 window.addEventListener('hashchange', onRouteChange);
 
+// ---- Typewriter (upgrade: restart-safe) ----
+const tw = document.querySelector('.typewriter');
+if (tw) {
+  const lines = JSON.parse(tw.dataset.rotate || '[]');
+  let i = 0;
+  const tick = () => {
+    tw.classList.remove('typing'); void tw.offsetWidth; // reflow
+    tw.textContent = lines[i];
+    tw.classList.add('typing');
+    i = (i + 1) % lines.length;
+  };
+  tick(); setInterval(tick, 3000);
+}
+
+// ---- Blink loop for audience cards (stop on hover/focus) ----
+const auds = document.querySelectorAll('.aud-card--blink');
+if (auds.length) {
+  let idx = 0, stop = false;
+  const loop = () => {
+    if (!stop) {
+      auds.forEach((a, i) => a.classList.toggle('is-on', i === idx));
+      idx = (idx + 1) % auds.length;
+    }
+  };
+  const int = setInterval(loop, 1600);
+  auds.forEach(a => {
+    ['mouseenter','focusin','touchstart'].forEach(ev => a.addEventListener(ev, ()=>{ stop = true; }));
+    ['mouseleave','focusout'].forEach(ev => a.addEventListener(ev, ()=>{ stop = false; }));
+  });
+}
+
+// ---- Intersection reveal (keeps your existing logic intact) ----
+const animated = document.querySelectorAll('[data-animate]');
+if ('IntersectionObserver' in window && animated.length) {
+  const ob = new IntersectionObserver((ents) => {
+    ents.forEach(e => { if (e.isIntersecting) { e.target.dataset.animate='in'; ob.unobserve(e.target); } });
+  }, { threshold: 0.18 });
+  animated.forEach(el => { if (!el.dataset.animate) el.dataset.animate='out'; ob.observe(el); });
+}
+
+// ---- Lightweight parallax (no library) ----
+(() => {
+  const layers = document.querySelectorAll('.hero .layer[data-depth]');
+  if (!layers.length) return;
+  let rx = 0, ry = 0, tx = 0, ty = 0;
+  const lerp = (a,b,t)=>a+(b-a)*t;
+  const onMove = (x,y)=>{
+    tx = (x / window.innerWidth  - .5) * 2; // -1..1
+    ty = (y / window.innerHeight - .5) * 2;
+  };
+  window.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY), {passive:true});
+  window.addEventListener('touchmove', e=>{
+    const t = e.touches[0]; if (t) onMove(t.clientX, t.clientY);
+  }, {passive:true});
+  const step = ()=>{
+    rx = lerp(rx, tx, .06);
+    ry = lerp(ry, ty, .06);
+    layers.forEach(el=>{
+      const d = parseFloat(el.dataset.depth || '0');
+      el.style.transform = `translate3d(${(-rx*d)*12}px, ${(-ry*d)*12}px, 0)`;
+    });
+    requestAnimationFrame(step);
+  };
+  step();
+})();
+
+// ---- Sparkles canvas (cheap GPU dots) ----
+(() => {
+  const c = document.getElementById('hero-sparkles');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  const DPR = Math.min(2, window.devicePixelRatio || 1);
+  const S = ()=>{ c.width = c.clientWidth * DPR; c.height = c.clientHeight * DPR; };
+  const dots = Array.from({length: 80}, () => ({
+    x: Math.random(), y: Math.random(), r: Math.random()*1.5 + .3, s: Math.random()*0.6 + 0.15
+  }));
+  window.addEventListener('resize', S); S();
+  (function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.save(); ctx.globalAlpha = .8;
+    dots.forEach(d=>{
+      d.y -= d.s / 600; if (d.y < -0.05) d.y = 1.05;
+      const x = d.x * c.width, y = d.y * c.height;
+      const g = ctx.createRadialGradient(x,y,0,x,y,d.r*8*DPR);
+      g.addColorStop(0,'rgba(154,216,255,.9)');
+      g.addColorStop(1,'rgba(154,216,255,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, d.r*DPR, 0, Math.PI*2); ctx.fill();
+    });
+    ctx.restore();
+    requestAnimationFrame(draw);
+  })();
+})();
+
 /* ---------- Header interactions ---------- */
 function bindHeader() {
   // Mobile menu
