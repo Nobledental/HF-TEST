@@ -1,74 +1,52 @@
-<!-- partials/header.html -->
 <header class="site-header" role="banner">
-  <div class="header__bar">
+  <div class="container">
+    <!-- Brand -->
     <a href="#/home" class="brand" aria-label="HealthFlo Healthcare — Home">
-      <span class="brand__mark" aria-hidden="true">
-        <span class="brand__pulse"></span>
-        <span class="brand__glow"></span>
-      </span>
-      <span class="brand__text">
-        <strong>HealthFlo</strong> <span class="thin">Healthcare</span>
-      </span>
+      <span class="brand__glow" aria-hidden="true"></span>
+      <img src="assets/logo.svg" alt="" class="brand__mark" />
+      <span class="brand__name">HealthFlo</span>
     </a>
 
+    <!-- Primary nav (desktop) -->
     <nav class="menu" aria-label="Primary">
-      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
 
-      <div id="nav-menu" class="menu__panel" data-open="false">
-        <ul class="menu__links" role="list">
-          <li><a href="#/home">Home</a></li>
-          <li class="has-sub">
-            <a href="#/patient">Patients</a>
-            <div class="mega">
-              <div class="mega__col">
-                <h4>Start here</h4>
-                <a href="#/patient" class="mini">Compare &amp; buy policies</a>
-                <a href="#/patient" class="mini">Treatment packages</a>
-                <a href="#/patient" class="mini">Know your coverage</a>
-              </div>
-              <div class="mega__col">
-                <h4>Care services</h4>
-                <a href="#/patient" class="mini">Book specialists</a>
-                <a href="#/patient" class="mini">Medicines in 24h</a>
-                <a href="#/patient" class="mini">Blood test at home</a>
-              </div>
-            </div>
-          </li>
-          <li class="has-sub">
-            <a href="#/hospital">Hospitals</a>
-            <div class="mega">
-              <div class="mega__col">
-                <h4>RCM suite</h4>
-                <a href="#/hospital" class="mini">Empanelment</a>
-                <a href="#/hospital" class="mini">Cashless Everywhere</a>
-                <a href="#/hospital" class="mini">Denial &amp; Recovery</a>
-              </div>
-              <div class="mega__col">
-                <h4>Compliance</h4>
-                <a href="#/hospital" class="mini">ROHINI, NABH</a>
-                <a href="#/hospital" class="mini">GIPSA workflows</a>
-              </div>
-            </div>
-          </li>
-          <li><a href="#/insurer">Insurers</a></li>
-        </ul>
+      <div id="nav-menu" class="menu__panel">
+        <div class="menu__links" role="menubar">
+          <a role="menuitem" href="#/home">Home</a>
+          <a role="menuitem" href="#/patient">Patients</a>
+          <a role="menuitem" href="#/hospital">Hospitals</a>
+          <a role="menuitem" href="#/insurer">Insurers</a>
 
-        <div class="menu__ctas">
-          <a class="btn btn-secondary" href="mailto:info@healthflo.in">Contact</a>
-          <a class="btn btn-primary" href="#/hospital">Get Started</a>
+          <!-- Compact, useful submenu -->
+          <details class="menu__more">
+            <summary aria-haspopup="true" aria-expanded="false">Resources</summary>
+            <ul class="submenu" role="menu">
+              <li role="none"><a role="menuitem" href="#/home#packages">Treatment Packages</a></li>
+              <li role="none"><a role="menuitem" href="#/patient#policy">Know Your Coverage</a></li>
+              <li role="none"><a role="menuitem" href="#/hospital#denials">Denial & Recovery</a></li>
+              <!-- keep it lean; add more only when truly useful -->
+            </ul>
+          </details>
+        </div>
+
+        <div class="menu__right">
+          <!-- Theme pills (app.js persists choice) -->
+          <div class="theme-switch" aria-label="Theme">
+            <button class="pill is-active" data-theme="theme-dawn" aria-pressed="true" title="Dawn (Light)">Dawn</button>
+            <button class="pill" data-theme="theme-onyx" aria-pressed="false" title="Onyx (Dark)">Onyx</button>
+            <button class="pill" data-theme="theme-ocean" aria-pressed="false" title="Ocean (Gradient)">Ocean</button>
+          </div>
+
+          <!-- CTAs -->
+          <div class="menu__ctas">
+            <a class="btn btn-secondary" href="mailto:info@healthflo.in">Contact</a>
+            <a class="btn btn-primary" href="#/patient">Get Started</a>
+          </div>
         </div>
       </div>
     </nav>
-
-    <div class="header__side">
-      <!-- Theme switch lives on the right -->
-      <div class="theme-switch" role="group" aria-label="Theme switch">
-        <button class="pill" data-theme="theme-dawn" aria-pressed="false" title="Dawn">Dawn</button>
-        <button class="pill" data-theme="theme-ocean" aria-pressed="false" title="Ocean">Ocean</button>
-        <button class="pill" data-theme="theme-onyx" aria-pressed="false" title="Onyx">Onyx</button>
-      </div>
-    </div>
   </div>
 </header>
