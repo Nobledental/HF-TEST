@@ -80,13 +80,19 @@
   </script>
 </head>
 
-<!-- Default theme: pick from theme-dawn | theme-onyx | theme-ocean | theme-emerald | theme-iris -->
-<body class="theme-ocean">
+<!-- Default theme: pick from theme-sterile | theme-dawn | theme-ocean | theme-aurora | theme-onyx | theme-royal -->
+<body class="theme-aurora">
   <!-- Ambient backgrounds (GPU-friendly; safe-area aware in CSS) -->
   <div class="bg grid" aria-hidden="true"></div>
   <div class="bg sun" aria-hidden="true"></div>
   <div class="bg blend" aria-hidden="true"></div>
-
+  <div class="bg orbs" aria-hidden="true">
+    <span class="orb orb--a"></span>
+    <span class="orb orb--b"></span>
+    <span class="orb orb--c"></span>
+  </div>
+  <div class="bg rings" aria-hidden="true"></div>
+  
   <!-- Global SVG defs for glow / blur / gradients (reusable across views) -->
   <svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true" focusable="false">
     <defs>
