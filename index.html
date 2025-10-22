@@ -1,41 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#050816" />
+  <meta name="theme-color" content="#050816" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)">
   <title>HealthFlo Healthcare — Marketplace & RCM</title>
 
   <!-- SEO -->
-  <meta name="description" content="HealthFlo Healthcare connects patients, hospitals, and insurers with seamless operations, transparent care, and high-trust revenue management." />
+  <meta name="description" content="HealthFlo Healthcare connects patients, hospitals, and insurers with transparent journeys, seamless operations, and high-trust revenue management." />
   <link rel="canonical" href="https://nobledental.github.io/HF-TEST/" />
 
-  <!-- OpenGraph / Twitter -->
+  <!-- Social -->
   <meta property="og:title" content="HealthFlo Healthcare — Marketplace & RCM" />
-  <meta property="og:description" content="Shaping the next generation of healthcare: transparent journeys for patients, cashflow clarity for hospitals, and scalable network ops for insurers." />
+  <meta property="og:description" content="Shaping the next generation of healthcare: clear for patients, scalable for hospitals, sustainable for insurers." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nobledental.github.io/HF-TEST/" />
   <meta property="og:image" content="https://nobledental.github.io/HF-TEST/assets/preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Fonts / Styles -->
+  <!-- Icons / PWA (optional assets; add files later if you like) -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Performance: preconnect + font preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Inter + Manrope (system SF fallback in CSS) -->
+  <!-- Inter + Manrope; system SF fallback is in CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
 
-  <!-- App CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Prefer JS-enabled animations -->
+  <!-- No-JS → JS -->
   <script>document.documentElement.classList.replace('no-js','js');</script>
 
-  <!-- (Optional) GSAP for choreographed reveals — uncomment when needed -->
+  <!-- Paint-safe theme boot (no flash) -->
+  <script>
+    (function(){
+      try{
+        var saved = localStorage.getItem('hf.theme');
+        if(saved){
+          // Remove any existing theme-* classes first
+          var cls = document.body ? document.body.classList : null;
+          // If body not ready yet, inject a tiny style to set it pre-body
+          var pre = document.createElement('style');
+          pre.textContent = 'body{visibility:hidden}';
+          document.head.appendChild(pre);
+          window.addEventListener('DOMContentLoaded', function(){
+            document.body.className = saved;
+            pre.remove();
+          });
+        }
+      }catch(_){}
+    })();
+  </script>
+
+  <!-- (Optional) GSAP for choreographed motion — keep commented until needed -->
   <!--
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   -->
-  
+
   <!-- Structured data -->
   <script type="application/ld+json">
   {
@@ -53,23 +80,46 @@
   </script>
 </head>
 
-<!-- Default theme: choose one of theme-dawn | theme-onyx | theme-ocean -->
+<!-- Default theme: pick from theme-dawn | theme-onyx | theme-ocean | theme-emerald | theme-iris -->
 <body class="theme-ocean">
-  <!-- Ambient, performance-safe background layers -->
+  <!-- Ambient backgrounds (GPU-friendly; safe-area aware in CSS) -->
   <div class="bg grid" aria-hidden="true"></div>
   <div class="bg sun" aria-hidden="true"></div>
   <div class="bg blend" aria-hidden="true"></div>
 
-  <!-- Header include -->
-  <!-- Use RELATIVE paths (no leading slash) so GitHub Pages serves them correctly -->
+  <!-- Global SVG defs for glow / blur / gradients (reusable across views) -->
+  <svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6" result="blur" />
+        <feColorMatrix type="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 18 -7" />
+        <feBlend in="SourceGraphic" in2="blur" mode="screen"/>
+      </filter>
+      <linearGradient id="hfStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"  stop-color="#12c2b0"/>
+        <stop offset="50%" stop-color="#4aa8ff"/>
+        <stop offset="100%" stop-color="#7c5cff"/>
+      </linearGradient>
+      <radialGradient id="hfDot" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity=".85"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <!-- Header include (relative path for GitHub Pages) -->
   <div data-include="partials/header.html"></div>
 
-  <!-- Main outlet: hash-router renders views here -->
-  <main id="app" class="wrap" aria-live="polite" aria-busy="true">
-    <!-- Fallback content while the first view loads -->
+  <!-- Main outlet: the router injects views here -->
+  <main id="app" class="wrap" aria-live="polite" aria-busy="true" data-parallax-root data-cursor-glow>
+    <!-- Fallback while first view loads -->
     <section class="center" style="padding:3rem 0" data-animate>
       <h1 class="hero__title">Loading HealthFlo…</h1>
-      <p class="hero__sub">If this takes long, check your connection.</p>
+      <p class="hero__sub">If this takes long, please check your connection.</p>
       <noscript>
         <p class="hero__sub"><strong>JavaScript is disabled.</strong> Enable JavaScript to use this site.</p>
       </noscript>
@@ -79,7 +129,13 @@
   <!-- Footer include -->
   <div data-include="partials/footer.html"></div>
 
-  <!-- App bootstrap (router + include loader + interactions) -->
+  <!-- Motion root helpers (optional, used by app.js) -->
+  <div class="motion-layers" aria-hidden="true">
+    <!-- cursor glow (app.js positions & fades this) -->
+    <span class="cursor-glow"></span>
+  </div>
+
+  <!-- App bootstrap (router + includes + interactions/motion) -->
   <script src="app.js" defer></script>
 </body>
 </html>
