@@ -1,96 +1,52 @@
-<!-- partials/footer.html -->
 <footer class="site-footer" role="contentinfo">
-  <!-- Top contact / trust band -->
-  <div class="container safe footer__top" data-animate>
-    <div class="footer__contact">
-      <h2 class="visually-hidden">Contact HealthFlo</h2>
-      <a class="btn btn-secondary" data-ripple href="tel:+919940207670" aria-label="Call sales on +91 99402 07670">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 8a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11 11 0 0 0 .6 3.5 1 1 0 0 1-.25 1Z"/></svg>
-        +91 99402 07670
-      </a>
-      <a class="btn btn-secondary" data-ripple href="tel:+918610425342" aria-label="Call helpline on +91 86104 25342">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-phone"></use></svg>
-        +91 86104 25342
-      </a>
-      <a class="btn btn-primary" data-ripple href="mailto:support@healthflo.in" aria-label="Email support">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 13 8-5V6l-8 5L4 6v2l8 5Z"/><path fill="currentColor" d="M4 8v10h16V8l-8 5Z"/></svg>
-        support@healthflo.in
-      </a>
-    </div>
-    <div class="footer__trust" aria-label="Trust & compliance">
-      <span class="trust__item">WCAG AA</span>
-      <span class="trust__dot" aria-hidden="true"></span>
-      <span class="trust__item">OWASP Practices</span>
-      <span class="trust__dot" aria-hidden="true"></span>
-      <span class="trust__item">Privacy-first</span>
-    </div>
-  </div>
-
-  <!-- Main grid -->
   <div class="container footer__grid" data-animate>
-    <!-- Brand / intro -->
     <section class="footer__brand">
-      <a href="#/home" class="brand brand--sm" aria-label="HealthFlo Healthcare — Home">
+      <a href="#/home" class="brand brand--sm" aria-label="HealthFlo Healthcare — Home" data-link>
         <span class="brand__glow" aria-hidden="true"></span>
         <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
           <use href="#hfMarkSymbol"></use>
         </svg>
         <span class="brand__name">HealthFlo</span>
       </a>
-      <p class="footer__tag">Shaping next-gen healthcare: clarity for patients, cashflow for hospitals, and scalable networks for insurers.</p>
-
-      <form class="newsletter" aria-label="Subscribe for updates" onsubmit="return false;">
-        <label class="visually-hidden" for="nl-email">Your email</label>
-        <input id="nl-email" type="email" placeholder="Your email for updates" autocomplete="email" inputmode="email" />
-        <button class="btn btn-primary" data-ripple type="submit">Subscribe</button>
-        <small class="newsletter__note">No spam. Unsubscribe anytime.</small>
-      </form>
-
-      <div class="footer__social" aria-label="Social links">
+      <p class="footer__tag">Shaping next-gen healthcare: clarity for patients, cashflow for hospitals, scalability for insurers.</p>
+      <div class="footer__social" aria-label="Social">
         <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
         <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+        <a href="https://www.facebook.com"  target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
       </div>
     </section>
 
-    <!-- Patients -->
     <section class="footer__col">
       <h3>Patients</h3>
       <ul>
-        <li><a href="#/patient">Start</a></li>
-        <li><a href="#/patient#policy">Know Your Coverage</a></li>
-        <li><a href="#/patient#packages">Treatment Packages</a></li>
-        <li><a href="#/patient#pharmacy">Medicines (24h)</a></li>
+        <li><a href="#/patient" data-link>Start</a></li>
+        <li><a href="#/patient#policy">Policy Coverage</a></li>
         <li><a href="#/patient#labs">Lab @ Home</a></li>
-        <li><a href="#/patient#appeals">Denials & Appeals</a></li>
+        <li><a href="#/patient#pharmacy">Medicines</a></li>
       </ul>
     </section>
 
-    <!-- Hospitals -->
     <section class="footer__col">
       <h3>Hospitals</h3>
       <ul>
-        <li><a href="#/hospital">RCM Cockpit</a></li>
+        <li><a href="#/hospital" data-link>RCM Cockpit</a></li>
         <li><a href="#/hospital#empanelment">Empanelment</a></li>
-        <li><a href="#/hospital#cashless">Cashless Everywhere</a></li>
-        <li><a href="#/hospital#denials">Denial Recovery</a></li>
-        <li><a href="#/hospital#certs">NABH / Rohini</a></li>
+        <li><a href="#/hospital#cashless">Cashless</a></li>
+        <li><a href="#/hospital#denials">Recovery</a></li>
       </ul>
     </section>
 
-    <!-- Insurers -->
     <section class="footer__col">
       <h3>Insurers</h3>
       <ul>
-        <li><a href="#/insurer">Console</a></li>
-        <li><a href="#/insurer#distribution">Policy Distribution</a></li>
+        <li><a href="#/insurer" data-link>Console</a></li>
+        <li><a href="#/insurer#distribution">Distribution</a></li>
         <li><a href="#/insurer#network">Network Ops</a></li>
-        <li><a href="#/insurer#packages">Packages & Pricing</a></li>
+        <li><a href="#/insurer#packages">Packages</a></li>
       </ul>
     </section>
   </div>
 
-  <!-- Bottom bar -->
   <div class="footer__bar safe">
     <small>© <span id="year"></span> HealthFlo Ventures Pvt. Ltd.</small>
     <nav class="footer__links" aria-label="Legal">
@@ -100,7 +56,7 @@
     </nav>
   </div>
 
-  <!-- SVG sprite (logo + tiny phone icon reuse) -->
+  <!-- Sprite (re-usable mark) -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="hfMark2" x1="0" y1="0" x2="1" y2="1">
@@ -109,36 +65,8 @@
       <symbol id="hfMarkSymbol" viewBox="0 0 32 32">
         <path fill="url(#hfMark2)" d="M16 3c7.18 0 13 5.82 13 13s-5.82 13-13 13S3 23.18 3 16 8.82 3 16 3Zm-6 15h12a2 2 0 0 0 0-4H10a2 2 0 0 0 0 4Zm0 5h6a2 2 0 0 0 0-4h-6a2 2 0 0 0 0 4Z"/>
       </symbol>
-      <symbol id="icon-phone" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 8a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11 11 0 0 0 .6 3.5 1 1 0 0 1-.25 1Z"/>
-      </symbol>
     </defs>
   </svg>
 
-  <script>
-    (function () {
-      try {
-        // year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // tiny newsletter UX (client-side only)
-        const form = document.querySelector('.newsletter');
-        const email = document.getElementById('nl-email');
-        if (form && email) {
-          form.addEventListener('submit', () => {
-            const v = String(email.value || '').trim();
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-              email.setCustomValidity('Please enter a valid email address.');
-              email.reportValidity();
-              return;
-            }
-            email.setCustomValidity('');
-            form.classList.add('sent');
-            form.querySelector('button').disabled = true;
-            form.querySelector('.newsletter__note').textContent = 'Thanks! We’ll be in touch.';
-          });
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <script>try{document.getElementById('year').textContent=new Date().getFullYear()}catch(e){}</script>
 </footer>
