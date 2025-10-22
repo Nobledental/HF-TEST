@@ -94,9 +94,9 @@
     const typed = qs('.typed');
     if (typed) {
       const lines = [
-        'We connect hospitals, patients, and insurers so cashless care just works.',
-        'Compare policies, explore packages, and book care with confidence.',
-        'Hospitals get faster approvals and predictable cash-in.'
+        'Policy concierge, transparent packages, and smarter cashless approvals.',
+        'Pharmacy & labs from hospital and private networks with concierge care.',
+        'Hospitals, insurers, and patients stay aligned with accountable rupees.'
       ];
       let index = 0;
       let pos = 0;
@@ -150,47 +150,30 @@
     }
 
     /* BLINK SEQUENCE */
-    const chooseCards = [
-      qs('.choose__card--patient'),
-      qs('.choose__card--hospital'),
-      qs('.choose__card--insurer')
-    ].filter(Boolean);
+    const chooseCards = qsa('.choose__card');
     if (chooseCards.length) {
       let idx = 0;
       const loop = () => {
-        if (body.dataset.mode !== 'intro') return;
+        if (body.dataset.mode === 'engaged') return;
         chooseCards.forEach((c,i)=>c.classList.toggle('blink', i === idx));
         idx = (idx + 1) % chooseCards.length;
         setTimeout(loop, 1400);
       };
       loop();
 
+      const stopIntro = () => {
+        if (body.dataset.mode === 'engaged') return;
+        body.dataset.mode = 'engaged';
+        chooseCards.forEach(c => c.classList.remove('blink'));
+      };
+
       chooseCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-          const target = card.dataset.target;
-          if (!target) return;
-          body.dataset.mode = target;
-          chooseCards.forEach(c=>c.classList.remove('blink'));
-          card.classList.add('blink');
-          const panelId = target === 'patient' ? '#patients' : target === 'hospital' ? '#hospitals' : '#insurers';
-          const panels = ['#patients', '#hospitals', '#insurers'];
-          panels.forEach(sel => {
-            const el = qs(sel);
-            if (!el) return;
-            if (sel === panelId) {
-              el.hidden = false;
-            } else {
-              el.hidden = true;
-            }
-          });
-          const panel = qs(panelId);
-          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          e.preventDefault();
-        });
+        ['mouseenter','focus','touchstart'].forEach(evt => card.addEventListener(evt, stopIntro, { passive: true }));
+        card.addEventListener('click', stopIntro, { once: true });
       });
     }
 
-    /* APPLE-LIKE SLIDER */
+    /* Slider controls */
     qsa('[data-slider]').forEach(slider => {
       const track = qs('.slider__track', slider);
       const prev = qs('.slider__btn.prev', slider);
