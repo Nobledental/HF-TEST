@@ -1,0 +1,48 @@
+<header class="hdr glass">
+  <nav class="nav wrap" aria-label="Primary">
+    <a href="#/home" class="brand" aria-label="HealthFlo Home">
+      <svg class="brand__mark" viewBox="0 0 60 60" aria-hidden="true">
+        <defs><linearGradient id="bgrad" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#00BFA6"/><stop offset="100%" stop-color="#0057FF"/></linearGradient></defs>
+        <circle cx="30" cy="30" r="18" fill="url(#bgrad)" class="brand__pulse"/>
+        <path d="M14 30h12l4-8 6 16 4-8h12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="brand__name">HealthFlo Healthcare</span>
+    </a>
+
+    <ul class="menu__links">
+      <li><a href="#/home">Home</a></li>
+      <li><a href="#/patient">Patients</a></li>
+      <li><a href="#/hospital">Hospitals</a></li>
+      <li><a href="#/insurer">Insurers</a></li>
+    </ul>
+
+    <div class="spacer"></div>
+
+    <!-- Theme switcher (right aligned) -->
+    <div class="theme-switch" role="group" aria-label="Theme switch">
+      <button class="pill" data-theme="theme-dawn" aria-pressed="true">Dawn</button>
+      <button class="pill" data-theme="theme-care">Care</button>
+      <button class="pill" data-theme="theme-neon">Neon</button>
+      <button class="pill" data-theme="theme-cosmos">Cosmos</button>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div id="nav-menu" class="menu">
+      <ul class="menu__links menu__links--drawer">
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/patient">Patients</a></li>
+        <li><a href="#/hospital">Hospitals</a></li>
+        <li><a href="#/insurer">Insurers</a></li>
+      </ul>
+      <div class="menu__ctas">
+        <a class="btn btn-ghost" href="#/home#demo">Watch 90-sec demo</a>
+        <a class="btn btn-primary" href="#/patient">Start</a>
+      </div>
+    </div>
+  </nav>
+</header>
