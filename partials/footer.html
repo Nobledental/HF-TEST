@@ -1,19 +1,80 @@
-<footer class="ftr">
-  <div class="wrap ftr__grid">
-    <div class="ftr__brand">
-      <strong>HealthFlo Healthcare</strong>
-      <small>© HealthFlo Ventures Pvt. Ltd.</small>
+<!-- partials/footer.html -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer__glass"></div>
+
+  <div class="footer__grid wrap">
+    <div class="f-brand">
+      <a href="#/home" class="brand brand--footer" aria-label="HealthFlo Healthcare — Home">
+        <span class="brand__mark" aria-hidden="true">
+          <span class="brand__pulse"></span>
+          <span class="brand__glow"></span>
+        </span>
+        <span class="brand__text">
+          <strong>HealthFlo</strong> <span class="thin">Healthcare</span>
+        </span>
+      </a>
+      <p class="muted">Marketplace &amp; operations backbone for patients, hospitals and insurers — built for India.</p>
+      <div class="social">
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">fb</a>
+      </div>
     </div>
-    <ul class="ftr__links">
-      <li><a href="#/home#choose">Choose Visit</a></li>
-      <li><a href="#/patient">Patients</a></li>
-      <li><a href="#/hospital">Hospitals</a></li>
-      <li><a href="#/insurer">Insurers</a></li>
-    </ul>
-    <ul class="ftr__social">
-      <li><a href="#">LinkedIn</a></li>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">Facebook</a></li>
-    </ul>
+
+    <div class="f-col">
+      <h4>Patients</h4>
+      <a href="#/patient">Compare &amp; buy policies</a>
+      <a href="#/patient">Treatment packages</a>
+      <a href="#/patient">Know coverage</a>
+      <a href="#/patient">Denial &amp; Ombudsman</a>
+      <a href="#/patient">Book specialists</a>
+      <a href="#/patient">Medicines &amp; Lab</a>
+    </div>
+
+    <div class="f-col">
+      <h4>Hospitals</h4>
+      <a href="#/hospital">Empanelment</a>
+      <a href="#/hospital">Cashless Everywhere</a>
+      <a href="#/hospital">Denial &amp; Recovery</a>
+      <a href="#/hospital">NABH / ROHINI</a>
+      <a href="#/hospital">RCM Dashboard</a>
+    </div>
+
+    <div class="f-col">
+      <h4>Insurers</h4>
+      <a href="#/insurer">Policy distribution</a>
+      <a href="#/insurer">Network ops</a>
+      <a href="#/insurer">Packages &amp; pricing</a>
+      <a href="#/insurer">Hospital relations</a>
+    </div>
+
+    <div class="f-col">
+      <h4>Contact</h4>
+      <a href="tel:+919940207670">+91 99402 07670</a>
+      <a href="tel:+918610425342">+91 86104 25342</a>
+      <a href="mailto:info@healthflo.in">info@healthflo.in</a>
+      <div class="badge">Chennai · Bengaluru · Hyderabad</div>
+      <form class="mini-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Thanks!';">
+        <label for="nl" class="muted">Get product updates</label>
+        <div class="mini-form__row">
+          <input id="nl" type="email" placeholder="you@company.com" required />
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+        </div>
+      </form>
+    </div>
   </div>
+
+  <div class="footer__bottom wrap">
+    <small>© <span id="y"></span> HealthFlo Ventures Pvt. Ltd. All rights reserved.</small>
+    <nav class="legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#/home">Sitemap</a>
+    </nav>
+  </div>
+
+  <script>
+    // year
+    (function(){var y=document.getElementById('y'); if(y) y.textContent=new Date().getFullYear();})();
+  </script>
 </footer>
