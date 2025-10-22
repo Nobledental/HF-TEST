@@ -1,0 +1,30 @@
+<section class="section panel">
+  <header class="section-head center" data-animate>
+    <h2>Hospitals</h2>
+    <p class="kicker">Complete Revenue Cycle Management — from compliance to cash-in.</p>
+  </header>
+
+  <div class="package-grid">
+    <article class="package-card"><header><strong>Mandatory Certification</strong><span class="price">Starter</span></header><ul><li>Rohini ID • NABH • CMCIS</li><li>Checklists & guidance</li><li>On-ground coordination</li></ul></article>
+    <article class="package-card"><header><strong>Insurer & TPA Empanelment</strong><span class="price">Network</span></header><ul><li>20+ insurers/TPAs</li><li>GIPSA assistance</li><li>End-to-end coordination</li></ul></article>
+    <article class="package-card"><header><strong>Cashless Everywhere</strong><span class="price">Access</span></header><ul><li>Non-network cashless</li><li>2 months post-empanelment</li><li>Helpdesk approvals</li></ul></article>
+    <article class="package-card"><header><strong>Denial & Recovery</strong><span class="price">Recovery</span></header><ul><li>Reconciliation & RCA</li><li>Follow-ups</li><li>Insurer recovery</li></ul></article>
+  </div>
+
+  <div class="card roi glass" data-animate>
+    <div class="roi__left">
+      <h3>90-day ROI Estimator</h3>
+      <form class="roi__form" id="roi-form" novalidate>
+        <label>Monthly claims volume<input type="number" name="claims" placeholder="120" required /></label>
+        <label>Avg bill size (₹)<input type="number" name="bill" placeholder="85000" required /></label>
+        <label>Current denial rate (%)<input type="number" name="denial" placeholder="14" /></label>
+        <button class="btn btn-primary" type="submit">Calculate ROI</button>
+      </form>
+    </div>
+    <div class="roi__right" id="roi-out" aria-live="polite">
+      <div class="roi__metric"><span>Projected extra cash-in (90 days)</span><strong id="roi-cashin">—</strong></div>
+      <div class="roi__metric"><span>Denial drop</span><strong id="roi-denial">—</strong></div>
+      <a class="btn btn-secondary" href="mailto:info@healthflo.in">Email me a PDF report</a>
+    </div>
+  </div>
+</section>
