@@ -1,86 +1,110 @@
-<section class="hero hero--matrix" id="top">
-  <div class="hero__grid">
-    <div class="hero__copy" data-animate>
-      <h1 class="typewriter" data-rotate='["We connect hospitals, patients, insurers.","Shaping next-gen healthcare.","Transparent care. Predictable revenue."]'>
-        Shaping next-gen healthcare.
-      </h1>
-      <p class="lead">One marketplace, three journeys — designed for confidence, clarity, and cashflow.</p>
-      <div class="chips">
-        <span class="chip">Cashless Approvals</span>
-        <span class="chip">Recovery & Reconciliation</span>
-        <span class="chip">Packages & Financing</span>
-      </div>
-    </div>
-
-    <!-- Animated SVG network -->
-    <div class="hero__vis" aria-hidden="true">
-      <svg class="network" viewBox="0 0 1200 700">
-        <defs>
-          <linearGradient id="wire" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" stop-color="rgba(124,92,255,0.45)"/>
-            <stop offset="100%" stop-color="rgba(116,255,217,0.55)"/>
-          </linearGradient>
-        </defs>
-        <g class="orbit">
-          <circle cx="600" cy="350" r="230" class="o1"></circle>
-          <circle cx="600" cy="350" r="140" class="o2"></circle>
-        </g>
-        <g class="links">
-          <path d="M240,520 C520,420 680,260 960,210" class="l1"></path>
-          <path d="M240,520 C520,340 600,260 620,150" class="l3"></path>
-        </g>
-        <g class="nodes">
-          <g class="node n-p" transform="translate(480,520)"><rect rx="18" width="240" height="104" class="card" />
-            <text x="18" y="42" class="title">Patients</text><text x="18" y="70" class="meta">Compare • Packages • Coverage</text></g>
-          <g class="node n-h" transform="translate(160,440)"><rect rx="18" width="220" height="104" class="card" />
-            <text x="18" y="42" class="title">Hospitals</text><text x="18" y="70" class="meta">Empanel • Cashless • RCM</text></g>
-          <g class="node n-i" transform="translate(880,140)"><rect rx="18" width="220" height="104" class="card" />
-            <text x="18" y="42" class="title">Insurers</text><text x="18" y="70" class="meta">Sell • TAT • Network</text></g>
-        </g>
-      </svg>
-    </div>
+<!-- views/landing.html -->
+<section class="hero" data-animate>
+  <div class="hero__bg">
+    <canvas id="hero-sparkles" aria-hidden="true"></canvas>
+    <div class="hero__sunrise"></div>
+    <div class="hero__glass"></div>
   </div>
-</section>
 
-<section id="choose" class="section panel center">
-  <header class="section-head">
-    <h2>I am…</h2>
-    <p class="kicker">Pick your journey. Cards blink in sequence to guide first-time visitors.</p>
+  <header class="hero__copy">
+    <div class="eyebrow">Shaping the next generation of connected care</div>
+    <h1 class="hero__title">
+      We connect <span class="hl">Patients</span>, <span class="hl">Hospitals</span> &amp; <span class="hl">Insurers</span>
+      <span class="typewriter"
+            aria-live="polite"
+            data-rotate='[
+              "— simpler coverage decisions.",
+              "— transparent packages & pricing.",
+              "— faster cashless approvals."
+            ]'></span>
+    </h1>
+    <p class="hero__sub">
+      HealthFlo Healthcare is your trusted marketplace and operations backbone —
+      from treatment discovery and policy selection to cashless approvals and claim recovery.
+    </p>
+    <div class="hero__cta-row">
+      <a class="btn btn-primary" href="#/patient" data-nav="patient">Explore Patient Services</a>
+      <a class="btn btn-secondary" href="#/hospital" data-nav="hospital">For Hospitals</a>
+      <a class="btn btn-ghost" href="#/insurer" data-nav="insurer">For Insurers</a>
+    </div>
   </header>
 
+  <!-- Big audience chooser (blinks P → H → I) -->
   <div class="aud-grid">
-    <a class="aud-card aud-card--blink is-on" data-aud="patient" href="#/patient">
+    <a class="aud-card aud-card--blink is-on" href="#/patient" data-role="patient" aria-label="I'm a Patient">
       <div class="aud-ico">🧑‍⚕️</div>
-      <h3>Patient</h3>
-      <p>Compare policies, explore treatment packages, know your coverage, book care.</p>
-      <button class="btn btn-primary">Explore more →</button>
+      <h3>I’m a Patient</h3>
+      <p>Compare & buy policies, explore treatment packages, book specialists, medicine & lab at home.</p>
+      <div class="aud-slider"><span>Explore</span></div>
     </a>
 
-    <a class="aud-card aud-card--blink" data-aud="hospital" href="#/hospital">
+    <a class="aud-card aud-card--blink" href="#/hospital" data-role="hospital" aria-label="I represent a Hospital">
       <div class="aud-ico">🏥</div>
-      <h3>Hospital</h3>
-      <p>Empanelment, Cashless Everywhere, Denial & Recovery, predictable revenue.</p>
-      <button class="btn btn-primary">Explore more →</button>
+      <h3>We’re a Hospital</h3>
+      <p>RCM suite, empanelment, “cashless everywhere”, denial recovery, compliance certifications.</p>
+      <div class="aud-slider"><span>Launch dashboard</span></div>
     </a>
 
-    <a class="aud-card aud-card--blink" data-aud="insurer" href="#/insurer">
-      <div class="aud-ico">🛡️</div>
-      <h3>Insurer</h3>
-      <p>Policy sales to high-intent patients, hospital relations, pricing & APIs.</p>
-      <button class="btn btn-primary">Explore more →</button>
+    <a class="aud-card aud-card--blink" href="#/insurer" data-role="insurer" aria-label="I’m an Insurer">
+      <div class="aud-ico">📄</div>
+      <h3>We’re an Insurer</h3>
+      <p>Policy distribution, network operations, packages & pricing, provider relationships.</p>
+      <div class="aud-slider"><span>See solutions</span></div>
     </a>
   </div>
 </section>
 
-<section class="section panel" id="highlights">
-  <header class="section-head center" data-animate>
-    <h2>Highlights</h2>
-    <p class="kicker">Cashless approvals ⏱ 45s avg • Denial recovery 98% • Packages with EMI</p>
-  </header>
+<!-- Spotlight: patient quick links (show only after a role pick; JS can toggle this block per route too) -->
+<section class="spotlights" data-animate>
+  <h2 class="center">Start with what you need</h2>
+  <div class="spot-grid">
+    <a class="spot-card" href="#/patient" data-target="policies">
+      <h3>Compare & buy policies</h3>
+      <p>Top plans with transparent benefits, riders & premium.</p>
+      <div class="chip">Hyperlink list on Patient page →</div>
+    </a>
+    <a class="spot-card" href="#/patient" data-target="packages">
+      <h3>Treatment packages</h3>
+      <p>Hospital-wise bundles with inclusions, exclusions & add-on benefits.</p>
+      <div class="chip">Explore hospitals →</div>
+    </a>
+    <a class="spot-card" href="#/patient" data-target="coverage">
+      <h3>Know your policy coverage</h3>
+      <p>Upload policy docs to see room rent, co-pay, waiting periods & limits.</p>
+      <div class="chip">Get expert support →</div>
+    </a>
+    <a class="spot-card" href="#/patient" data-target="ombudsman">
+      <h3>Denial & short settlement</h3>
+      <p>Appeals, grievances & Ombudsman assistance — end to end.</p>
+      <div class="chip">File support ticket →</div>
+    </a>
+    <a class="spot-card" href="#/patient" data-target="specialists">
+      <h3>Book specialists</h3>
+      <p>Top doctors & TPA-ready care with guided pre-auth questions.</p>
+      <div class="chip">Find your doctor →</div>
+    </a>
+    <a class="spot-card" href="#/patient" data-target="pharmacy">
+      <h3>Medicines in 24 hours</h3>
+      <p>Registered customers get member pricing & priority delivery.</p>
+      <div class="chip">Order now →</div>
+    </a>
+    <a class="spot-card" href="#/patient" data-target="lab">
+      <h3>Blood tests at home</h3>
+      <p>Discounted home collection with digital reports.</p>
+      <div class="chip">Book a slot →</div>
+    </a>
+  </div>
+</section>
 
-  <div class="command-deck__grid">
-    <div class="command-widget"><div class="command-widget__header">Cashless Pulse</div><div class="command-widget__metric">92% <span>same-day approvals</span></div><div class="command-widget__chart"></div></div>
-    <div class="command-widget"><div class="command-widget__header">RCM Tracker</div><ul><li><span>20+</span> insurers active</li><li><span>45s</span> pre-auth avg</li><li><span>98%</span> recovery</li></ul></div>
-    <div class="command-widget"><div class="command-widget__header">Concierge</div><ul><li><span>₹0</span> EMI for 3 months</li><li><span>Live</span> Ombudsman desk</li><li><span>150k+</span> claims guided</li></ul></div>
+<!-- Trust / metrics -->
+<section class="metrics" data-animate>
+  <div class="metric">
+    <strong>92%</strong><span>Same-day cashless approvals</span>
+  </div>
+  <div class="metric">
+    <strong>20+</strong><span>Insurers & major TPAs</span>
+  </div>
+  <div class="metric">
+    <strong>98%</strong><span>Denial recovery win-rate</span>
   </div>
 </section>
