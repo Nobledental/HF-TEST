@@ -3,16 +3,16 @@
     <section class="footer__brand">
       <a href="#/home" class="brand brand--sm" aria-label="HealthFlo Healthcare — Home">
         <span class="brand__glow" aria-hidden="true"></span>
-        <img src="assets/logo.svg" alt="" class="brand__mark" />
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <use href="#hfMarkSymbol"></use>
+        </svg>
         <span class="brand__name">HealthFlo</span>
       </a>
-      <p class="footer__tag">
-        Transparent care journeys for patients. Cashflow clarity for hospitals. Scalable networks for insurers.
-      </p>
+      <p class="footer__tag">Shaping next-gen healthcare: clarity for patients, cashflow for hospitals, scalability for insurers.</p>
       <div class="footer__social" aria-label="Social">
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
       </div>
     </section>
 
@@ -20,8 +20,8 @@
       <h3>Patients</h3>
       <ul>
         <li><a href="#/patient">Start</a></li>
-        <li><a href="#/patient#policy">Know Your Coverage</a></li>
-        <li><a href="#/patient#labs">Lab at Home</a></li>
+        <li><a href="#/patient#policy">Policy Coverage</a></li>
+        <li><a href="#/patient#labs">Lab @ Home</a></li>
         <li><a href="#/patient#pharmacy">Medicines</a></li>
       </ul>
     </section>
@@ -31,34 +31,24 @@
       <ul>
         <li><a href="#/hospital">RCM Cockpit</a></li>
         <li><a href="#/hospital#empanelment">Empanelment</a></li>
-        <li><a href="#/hospital#cashless">Cashless Everywhere</a></li>
-        <li><a href="#/hospital#denials">Denial &amp; Recovery</a></li>
+        <li><a href="#/hospital#cashless">Cashless</a></li>
+        <li><a href="#/hospital#denials">Recovery</a></li>
       </ul>
     </section>
 
     <section class="footer__col">
       <h3>Insurers</h3>
       <ul>
-        <li><a href="#/insurer">Insurer Console</a></li>
+        <li><a href="#/insurer">Console</a></li>
         <li><a href="#/insurer#distribution">Distribution</a></li>
         <li><a href="#/insurer#network">Network Ops</a></li>
-        <li><a href="#/insurer#packages">Packages &amp; Pricing</a></li>
-      </ul>
-    </section>
-
-    <section class="footer__col">
-      <h3>Contact</h3>
-      <ul>
-        <li><a href="tel:+919940207670">+91 99402 07670</a></li>
-        <li><a href="tel:+918610425342">+91 86104 25342</a></li>
-        <li><a href="mailto:info@healthflo.in">info@healthflo.in</a></li>
-        <li><a href="https://www.healthflo.org" target="_blank" rel="noopener">healthflo.org</a></li>
+        <li><a href="#/insurer#packages">Packages</a></li>
       </ul>
     </section>
   </div>
 
-  <div class="footer__bar">
-    <small>© <span id="year"></span> HealthFlo Ventures Pvt. Ltd. All rights reserved.</small>
+  <div class="footer__bar safe">
+    <small>© <span id="year"></span> HealthFlo Ventures Pvt. Ltd.</small>
     <nav class="footer__links" aria-label="Legal">
       <a href="#/home#privacy">Privacy</a>
       <a href="#/home#terms">Terms</a>
@@ -66,8 +56,19 @@
     </nav>
   </div>
 
+  <!-- Optional: sprite for reusing the logo mark -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="hfMark2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#12c2b0"/><stop offset="1" stop-color="#7c5cff"/>
+      </linearGradient>
+      <symbol id="hfMarkSymbol" viewBox="0 0 32 32">
+        <path fill="url(#hfMark2)" d="M16 3c7.18 0 13 5.82 13 13s-5.82 13-13 13S3 23.18 3 16 8.82 3 16 3Zm-6 15h12a2 2 0 0 0 0-4H10a2 2 0 0 0 0 4Zm0 5h6a2 2 0 0 0 0-4h-6a2 2 0 0 0 0 4Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <script>
-    // tiny util for dynamic year without touching app.js
     (function(){ try{ document.getElementById('year').textContent = new Date().getFullYear(); }catch(e){} })();
   </script>
 </footer>
