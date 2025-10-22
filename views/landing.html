@@ -1,45 +1,43 @@
 <!-- views/landing.html -->
-<section class="hero" aria-label="HealthFlo connection hero">
-  <!-- Ambient hero layers (glass + sunrise) -->
-  <div class="hero__bg">
-    <div class="hero__sunrise" aria-hidden="true"></div>
-    <div class="hero__glass" aria-hidden="true"></div>
-    <!-- Optional sparkles canvas (left here for future GSAP/Canvas use) -->
-    <canvas id="hero-sparkles" aria-hidden="true"></canvas>
+<section class="hero hero--xl" aria-labelledby="hero-title">
+  <!-- Ambient hero layers (parallax-ready) -->
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__sunrise layer" data-depth="0.10"></div>
+    <canvas id="hero-sparkles" class="layer" data-depth="0.18" aria-hidden="true"></canvas>
+    <div class="hero__glass layer" data-depth="0.05"></div>
   </div>
 
+  <!-- Copy -->
   <div class="hero__copy" data-animate>
     <p class="eyebrow">Shaping the next generation of healthcare</p>
-    <h1 class="hero__title">
-      We connect <span class="hl">Patients</span>, <span class="hl">Hospitals</span>, and <span class="hl">Insurers</span><br />
-      for transparent care &amp; seamless operations.
-    </h1>
-    <p class="hero__sub">
-      Clear journeys for people seeking treatment, cashflow clarity for providers, and scalable networks for insurers —
-      all delivered with precision, compliance, and trust.
-      <span class="typewriter typing"
+
+    <h1 id="hero-title" class="hero__title">
+      We connect <span class="hl">Patients</span>, <span class="hl">Hospitals</span>, and
+      <span class="hl">Insurers</span> for transparent care &amp; seamless operations.
+      <span class="sr-only"> — </span>
+      <span class="typewriter"
+        aria-live="polite"
         data-rotate='[
           "Compare policies · Book specialists · Track claims",
           "Cashless approvals · Empanelment · Denial recovery",
           "Packages & pricing · Medicines & lab at home"
         ]'></span>
+    </h1>
+
+    <p class="hero__sub">
+      Clear journeys for people seeking treatment, cashflow clarity for providers, and scalable networks for insurers —
+      delivered with precision, compliance, and trust.
     </p>
 
     <div class="hero__cta-row">
-      <a href="#/patient" class="btn btn-primary">
-        Explore Patient Services
-      </a>
-      <a href="#/hospital" class="btn btn-secondary">
-        For Hospitals
-      </a>
-      <a href="#/insurer" class="btn btn-ghost">
-        For Insurers
-      </a>
+      <a href="#/patient" class="btn btn-primary" data-ripple>Explore Patient Services</a>
+      <a href="#/hospital" class="btn btn-secondary" data-ripple>For Hospitals</a>
+      <a href="#/insurer" class="btn btn-ghost" data-ripple>For Insurers</a>
     </div>
   </div>
 
-  <!-- Connection schematic (SVG) -->
-  <div class="center" style="padding:0 1.2rem" data-animate>
+  <!-- Connection schematic -->
+  <div class="center hero__schematic" data-animate>
     <svg viewBox="0 0 1100 220" width="100%" height="auto" role="presentation" aria-hidden="true">
       <defs>
         <linearGradient id="lnkA" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -47,7 +45,6 @@
           <stop offset="100%" stop-color="currentColor" stop-opacity=".45"/>
         </linearGradient>
       </defs>
-      <!-- Nodes -->
       <g fill="none" stroke="url(#lnkA)" stroke-width="2">
         <path d="M150 110 C 280 10, 820 10, 950 110" />
         <path d="M150 110 C 280 210, 820 210, 950 110" />
@@ -60,13 +57,18 @@
       </g>
       <g fill="currentColor" opacity=".65">
         <text x="120" y="150" font-size="16" style="font-weight:700">Patients</text>
-        <text x="920" y="150" font-size="16" style="font-weight:700">Hospitals / Insurers</text>
+        <text x="870" y="150" font-size="16" style="font-weight:700">Hospitals &amp; Insurers</text>
       </g>
     </svg>
   </div>
+
+  <!-- Wave divider -->
+  <svg class="hero-wave" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="currentColor" opacity=".06" d="M0,80 C240,140 480,0 720,60 C960,120 1200,40 1440,80 L1440,140 L0,140 Z"></path>
+  </svg>
 </section>
 
-<!-- Audience selection (big blinking options) -->
+<!-- Audience selection -->
 <section class="audience" aria-labelledby="audience-title">
   <div class="center" data-animate>
     <h2 id="audience-title" class="hero__title" style="font-size:clamp(1.4rem,2.6vw,2rem)">
@@ -75,10 +77,10 @@
     <p class="hero__sub">Tap a path below — you’ll see content tailored just for you.</p>
   </div>
 
-  <div class="aud-grid" data-animate>
+  <div class="aud-grid" data-animate id="aud-selector">
     <!-- Patients -->
     <a class="aud-card aud-card--blink is-on" href="#/patient" aria-label="I am a Patient">
-      <div class="aud-ico">🧑‍⚕️</div>
+      <div class="aud-ico" aria-hidden="true">🧑‍⚕️</div>
       <h3>I’m a Patient</h3>
       <p>Compare &amp; buy policies, explore packages, know coverage, book specialists, medicines &amp; lab at home.</p>
       <div class="aud-slider" aria-hidden="true"><span>Explore Patient</span></div>
@@ -86,7 +88,7 @@
 
     <!-- Hospitals -->
     <a class="aud-card aud-card--blink" href="#/hospital" aria-label="I represent a Hospital">
-      <div class="aud-ico">🏥</div>
+      <div class="aud-ico" aria-hidden="true">🏥</div>
       <h3>I’m a Hospital</h3>
       <p>Empanelment, Cashless Everywhere, Denial &amp; Recovery, NABH/ROHINI, and a unified RCM cockpit.</p>
       <div class="aud-slider" aria-hidden="true"><span>Explore Hospital</span></div>
@@ -94,7 +96,7 @@
 
     <!-- Insurers -->
     <a class="aud-card aud-card--blink" href="#/insurer" aria-label="I’m an Insurer">
-      <div class="aud-ico">📜</div>
+      <div class="aud-ico" aria-hidden="true">🛡️</div>
       <h3>I’m an Insurer</h3>
       <p>Policy distribution, network hospital ops, pricing &amp; packages, and relationship management.</p>
       <div class="aud-slider" aria-hidden="true"><span>Explore Insurer</span></div>
@@ -102,7 +104,7 @@
   </div>
 </section>
 
-<!-- Spotlight strips (only highlights; deep content lives in respective views) -->
+<!-- Product spotlights -->
 <section class="spotlights" aria-labelledby="spot-title">
   <div class="center" data-animate>
     <h2 id="spot-title">Highlights you can act on today</h2>
@@ -110,37 +112,32 @@
   </div>
 
   <div class="spot-grid" data-animate>
-    <!-- Patient highlights -->
-    <a class="spot-card" href="#/patient" aria-label="Compare health insurance policies">
+    <a class="spot-card" href="#/patient#policy" aria-label="Compare health insurance policies">
       <h3>Compare policies in minutes</h3>
       <p>Instant quotes, key benefit deltas, and no hidden fees.</p>
       <span class="chip">Patients</span>
     </a>
-    <a class="spot-card" href="#/patient" aria-label="Treatment packages">
+    <a class="spot-card" href="#/patient#packages" aria-label="Treatment packages">
       <h3>Treatment packages with add-ons</h3>
       <p>Transparent bundles from partner hospitals — choose perks that matter.</p>
       <span class="chip">Patients</span>
     </a>
-    <a class="spot-card" href="#/patient" aria-label="Know your policy coverage">
+    <a class="spot-card" href="#/patient#coverage" aria-label="Know your policy coverage">
       <h3>Know your coverage</h3>
       <p>Upload policy PDF to see room rent caps, co-pay, waiting periods &amp; more.</p>
       <span class="chip">Patients</span>
     </a>
-
-    <!-- Hospital highlights -->
-    <a class="spot-card" href="#/hospital" aria-label="Insurance and TPA empanelment">
+    <a class="spot-card" href="#/hospital#empanelment" aria-label="Insurance and TPA empanelment">
       <h3>Insurance &amp; TPA empanelment</h3>
       <p>20+ insurers &amp; major TPAs; GIPSA support with live status.</p>
       <span class="chip">Hospitals</span>
     </a>
-    <a class="spot-card" href="#/hospital" aria-label="Cashless Everywhere">
+    <a class="spot-card" href="#/hospital#cashless" aria-label="Cashless Everywhere">
       <h3>Cashless Everywhere</h3>
       <p>Immediate cashless even before network onboarding — managed and compliant.</p>
       <span class="chip">Hospitals</span>
     </a>
-
-    <!-- Insurer highlights -->
-    <a class="spot-card" href="#/insurer" aria-label="Policy distribution">
+    <a class="spot-card" href="#/insurer#distribution" aria-label="Policy distribution">
       <h3>Policy distribution &amp; engagement</h3>
       <p>City-by-city funnels, verified leads, and outcome dashboards.</p>
       <span class="chip">Insurers</span>
@@ -148,32 +145,20 @@
   </div>
 </section>
 
-<!-- Proof metrics -->
+<!-- Metrics -->
 <section class="metrics" aria-label="Key impact metrics" data-animate>
-  <div class="metric">
-    <strong>92%</strong>
-    <span>Same-day cashless approvals</span>
-  </div>
-  <div class="metric">
-    <strong>98%</strong>
-    <span>Denial recovery (avg.)</span>
-  </div>
-  <div class="metric">
-    <strong>45s</strong>
-    <span>Avg. pre-auth velocity</span>
-  </div>
-  <div class="metric">
-    <strong>570+</strong>
-    <span>NABH partners in network</span>
-  </div>
+  <div class="metric"><strong>92%</strong><span>Same-day cashless approvals</span></div>
+  <div class="metric"><strong>98%</strong><span>Denial recovery (avg.)</span></div>
+  <div class="metric"><strong>45s</strong><span>Avg. pre-auth velocity</span></div>
+  <div class="metric"><strong>570+</strong><span>NABH partners in network</span></div>
 </section>
 
-<!-- Final CTA band -->
-<section class="center" style="padding: 1rem 1.2rem 2.6rem" data-animate>
+<!-- CTA band -->
+<section class="center cta-band" data-animate>
   <p class="hero__sub">Ready to see it live?</p>
   <div class="hero__cta-row" style="justify-content:center">
-    <a href="#/patient" class="btn btn-primary">Start as Patient</a>
-    <a href="#/hospital" class="btn btn-secondary">Start as Hospital</a>
-    <a href="#/insurer" class="btn btn-ghost">Start as Insurer</a>
+    <a href="#/patient" class="btn btn-primary" data-ripple>Start as Patient</a>
+    <a href="#/hospital" class="btn btn-secondary" data-ripple>Start as Hospital</a>
+    <a href="#/insurer" class="btn btn-ghost" data-ripple>Start as Insurer</a>
   </div>
 </section>
